@@ -1,0 +1,38 @@
+{
+  "name": "invoice-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdrianoEscarabote/Invoice-app.git"
+  },
+  "author": "AdrianoEscarabote",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AdrianoEscarabote/Invoice-app/issues"
+  },
+  "homepage": "https://github.com/AdrianoEscarabote/Invoice-app#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.20",
+    "@types/jest": "^29.5.7",
+    "@types/node": "^20.8.10",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "git-commit-msg-linter": "^5.0.4",
+    "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.0.2",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.3",
+    "ts-jest": "^29.1.1",
+    "tsc-alias": "^1.8.8",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.2.2"
+  }
+}
