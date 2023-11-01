@@ -93,3 +93,51 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.HeadingL {
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.0703rem;
+}
+
+.HeadingM {
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.0469rem;
+}
+
+.HeadingS {
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5rem;
+  letter-spacing: -0.0156rem;
+}
+
+.HeadingSVariant {
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 0.9375rem;
+  letter-spacing: -0.0156rem;
+}
+
+.Body {
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.125rem;
+  letter-spacing: -0.0063rem;
+}
+
+.BodyVariant {
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0.9375rem;
+  letter-spacing: -0.0063rem;
+}
