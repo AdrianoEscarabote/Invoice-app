@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "@storybook/addons": "^7.5.2",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.2",
     "@types/react": "^18.2.14",
