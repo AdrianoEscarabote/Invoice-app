@@ -70,26 +70,75 @@ select {
   }
 }
 
+.HeadingL {
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.0703rem;
+}
+
+.HeadingM {
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.0469rem;
+}
+
+.HeadingS {
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5rem;
+  letter-spacing: -0.0156rem;
+}
+
+.HeadingSVariant {
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 0.9375rem;
+  letter-spacing: -0.0156rem;
+}
+
+.Body {
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.125rem;
+  letter-spacing: -0.0063rem;
+}
+
+.BodyVariant {
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0.9375rem;
+  letter-spacing: -0.0063rem;
+}
+
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --bg-color: #f8f8fb;
+  --text-color: #c8f3f3;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --bg-color: #141625;
+    --text-color: #000000;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: var(--bg-color);
+}
+
+.dark-theme {
+  --bg-color: #141625;
+  --text-color: #000000;
+}
+
+.text-color {
+  color: var(--text-color);
 }
