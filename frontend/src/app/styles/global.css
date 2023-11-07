@@ -120,25 +120,66 @@ select {
 
 :root {
   --bg-color: #f8f8fb;
-  --text-color: #c8f3f3;
+  --bg-color2: #fff;
+  --text-color: #7e88c3;
+  --text-color2: #0c0e16;
+  --text-color3: #7e88c3;
+  --border-color: #dfe3fa;
+  --btn-edit: #f9fafe;
+  --hover-btn-edit: #dfe3fa;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #141625;
-    --text-color: #000000;
+    --bg-color2: #1e2139;
+    --text-color: #dfe3fa;
+    --text-color2: #fff;
+    --text-color3: #dfe3fa;
+    --border-color: transparent;
+    --btn-edit: #252945;
+    --hover-btn-edit: #fff;
   }
+}
+.dark-theme {
+  --bg-color: #141625;
+  --bg-color2: #1e2139;
+  --text-color: #dfe3fa;
+  --text-color2: #fff;
+  --text-color3: #dfe3fa;
+  --border-color: transparent;
+  --btn-edit: #252945;
+  --hover-btn-edit: #fff;
 }
 
 body {
   background-color: var(--bg-color);
 }
 
-.dark-theme {
-  --bg-color: #141625;
-  --text-color: #000000;
+.bg-2 {
+  background-color: var(--bg-color2);
 }
 
 .text-color {
   color: var(--text-color);
+}
+
+.text-color2 {
+  color: var(--text-color2);
+}
+
+.text-color3 {
+  color: var(--text-color3);
+}
+
+.border-input {
+  border-color: var(--border-color);
+}
+
+.btn-edit-color {
+  background-color: var(--btn-edit);
+}
+
+.btn-edit-color:hover {
+  background-color: var(--hover-btn-edit) !important;
 }
