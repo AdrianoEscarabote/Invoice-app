@@ -127,6 +127,9 @@ select {
   --border-color: #dfe3fa;
   --btn-edit: #f9fafe;
   --hover-btn-edit: #dfe3fa;
+  --draft-btn: #373b53;
+  --hover-draft-btn: #0c0e16;
+  --draft-text: #888eb0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -139,6 +142,9 @@ select {
     --border-color: transparent;
     --btn-edit: #252945;
     --hover-btn-edit: #fff;
+    --draft-btn: #373b53;
+    --hover-draft-btn: #1e2139;
+    --draft-text: #dfe3fa;
   }
 }
 .dark-theme {
@@ -150,6 +156,9 @@ select {
   --border-color: transparent;
   --btn-edit: #252945;
   --hover-btn-edit: #fff;
+  --draft-btn: #373b53;
+  --hover-draft-btn: #1e2139;
+  --draft-text: #dfe3fa;
 }
 
 body {
@@ -182,4 +191,13 @@ body {
 
 .btn-edit-color:hover {
   background-color: var(--hover-btn-edit) !important;
+}
+
+.draft-btn {
+  background-color: var(--draft-btn);
+  color: var(--draft-text);
+}
+
+.draft-btn:hover {
+  background-color: var(--hover-draft-btn);
 }
