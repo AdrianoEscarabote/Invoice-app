@@ -130,6 +130,7 @@ select {
   --draft-btn: #373b53;
   --hover-draft-btn: #0c0e16;
   --draft-text: #888eb0;
+  --header-color: #373b53;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -145,6 +146,7 @@ select {
     --draft-btn: #373b53;
     --hover-draft-btn: #1e2139;
     --draft-text: #dfe3fa;
+    --header-color: #1e2139;
   }
 }
 .dark-theme {
@@ -159,6 +161,7 @@ select {
   --draft-btn: #373b53;
   --hover-draft-btn: #1e2139;
   --draft-text: #dfe3fa;
+  --header-color: #1e2139;
 }
 
 body {
@@ -200,4 +203,8 @@ body {
 
 .draft-btn:hover {
   background-color: var(--hover-draft-btn);
+}
+
+.header-color {
+  background-color: var(--header-color);
 }
