@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const ToggleThemeBtn = () => {
-  const [iconTheme, setIconTheme] = useState("");
+  const [iconTheme, setIconTheme] = useState("/assets/icon-moon.svg");
 
   useEffect(() => {
     handleChangeIconTheme();
