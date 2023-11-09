@@ -4,7 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc && tsc-alias",
+    "start": "node dist/index.js",
+    "start:dev": "nodemon --watch \"src/\" --exec \"ts-node -r tsconfig-paths/register src/index.ts\" -e ts",
+    "husky:prepare": "husky install",
+    "test": "jest --passWithNoTests",
+    "test:watch": "yarn test --watch",
+    "test:staged": "yarn test --findRelatedTests",
+    "test:push": "yarn test --coverage"
   },
   "repository": {
     "type": "git",
@@ -34,5 +41,8 @@
     "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   }
 }
