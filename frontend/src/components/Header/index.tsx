@@ -4,7 +4,9 @@ import ToggleThemeBtn from "../ToggleThemeBtn";
 
 const Header = () => {
   return (
-    <header className="w-full max-w-[103px] min-h-screen header-color rounded-r-[20px] justify-between flex flex-col">
+    <header
+      className={`${style.header} w-full max-w-[103px] min-h-screen header-color rounded-r-[20px] justify-between flex flex-col`}
+    >
       <div
         className={`${style.wrapper_img} z-10 relative bg-dark_purple w-full rounded-r-[20px] h-[103px] grid place-content-center`}
       >
@@ -17,10 +19,14 @@ const Header = () => {
         />
       </div>
 
-      <div className="flex items-center justify-center flex-col gap-8">
+      <div
+        className={`${style.content} flex items-center justify-center flex-col gap-8`}
+      >
         <ToggleThemeBtn />
 
-        <div className="border-t border-[#494E6E] w-full flex items-center justify-center py-6">
+        <div
+          className={`${style.wrapper_avatar} border-t border-[#494E6E] w-full flex items-center justify-center py-6`}
+        >
           <Image
             src={"/assets/image-avatar.jpg"}
             alt="avatar image"

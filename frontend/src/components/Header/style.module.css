@@ -10,3 +10,40 @@
   border-start-start-radius: 1.25rem;
   border-end-end-radius: 1.25rem;
 }
+
+@media (max-width: 48rem) {
+  .header {
+    min-height: 5rem !important;
+    height: 5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-direction: row;
+    border-radius: 0rem !important;
+  }
+  .wrapper_img:before {
+    width: 5rem;
+    height: 2.5rem;
+    border-end-end-radius: 1.25rem;
+  }
+  .wrapper_img {
+    width: 5rem;
+    height: 5rem;
+  }
+  .wrapper_img img {
+    width: 1.9375rem;
+    height: 1.8125rem;
+  }
+  .content {
+    display: flex !important;
+    flex-direction: row !important;
+  }
+  .wrapper_avatar {
+    padding: 1.5rem 2rem;
+    border-left: 0.0625rem solid #494e6e;
+    border-top: unset !important;
+  }
+  .wrapper_avatar img {
+    width: 2rem;
+    height: 2rem;
+  }
+}
