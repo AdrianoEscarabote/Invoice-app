@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import style from "./style.module.css";
 
 const ToggleThemeBtn = () => {
   const [iconTheme, setIconTheme] = useState("/assets/icon-moon.svg");
@@ -28,7 +29,7 @@ const ToggleThemeBtn = () => {
       : setIconTheme("/assets/icon-moon.svg");
 
   return (
-    <button id="theme-toggle" className="text-color">
+    <button id="theme-toggle" className={`${style.button} text-color`}>
       <Image
         src={iconTheme}
         alt={
