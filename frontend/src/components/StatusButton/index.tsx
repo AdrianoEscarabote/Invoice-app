@@ -8,7 +8,7 @@ const StatusButton = () => {
   return (
     <div className="flex flex-col relative HeadingSVariant">
       <button
-        className="flex items-center gap-3"
+        className="flex items-center gap-3 w-full min-w-[132px] py-3"
         onClick={() => setOptionsOpen(!optionsOpen)}
       >
         Filter by Status
