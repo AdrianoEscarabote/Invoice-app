@@ -18,6 +18,7 @@
   width: 0;
 }
 .checkmark {
+  transition: 0s;
   position: absolute;
   top: 0;
   left: 0;
@@ -27,7 +28,8 @@
   border-radius: 2px;
 }
 .container:hover .input ~ .checkmark {
-  background-color: #ccc;
+  background: #dfe3fa;
+  border: 1px solid var(--01, #7c5dfa);
 }
 
 .container:hover .input:checked ~ .checkmark {
