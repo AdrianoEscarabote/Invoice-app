@@ -1,7 +1,7 @@
 import { InvoiceDetailsProps } from "./InvoiceDetailsProps";
-import { format } from "date-fns";
+import { format } from "date-fns/format";
 
-const InvoiceDetails = (data: InvoiceDetailsProps) => {
+const InvoiceDetails = ({ data }: InvoiceDetailsProps) => {
   return (
     <section className="max-w-[730px] bg-2 p-12 rounded-lg flex flex-col">
       <div className="w-full flex justify-between">
@@ -56,7 +56,7 @@ const InvoiceDetails = (data: InvoiceDetailsProps) => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-3 p-8 bg-3 rounded-t-lg mt-11">
+      <div className="flex flex-col gap-8 p-8 bg-3 rounded-t-lg mt-11">
         <div className="BodyVariant text-color3 grid grid-cols-2">
           <p>Item Name</p>
           <div className="w-full flex justify-between">

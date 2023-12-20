@@ -1,4 +1,8 @@
 export interface InvoiceDetailsProps {
+  data: Props;
+}
+
+interface Props {
   id: string;
   createdAt: string;
   paymentDue: string;
