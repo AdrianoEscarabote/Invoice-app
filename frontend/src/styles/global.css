@@ -121,6 +121,8 @@ select {
 :root {
   --bg-color: #f8f8fb;
   --bg-color2: #fff;
+  --bg-color3: #f9fafe;
+  --bg-color4: #373b53;
   --text-color: #7e88c3;
   --text-color2: #0c0e16;
   --text-color3: #7e88c3;
@@ -131,12 +133,15 @@ select {
   --hover-draft-btn: #0c0e16;
   --draft-text: #888eb0;
   --header-color: #373b53;
+  --status-draft-color: #373b53;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #141625;
     --bg-color2: #1e2139;
+    --bg-color3: #252945;
+    --bg-color4: #0c0e16;
     --text-color: #dfe3fa;
     --text-color2: #fff;
     --text-color3: #dfe3fa;
@@ -147,11 +152,14 @@ select {
     --hover-draft-btn: #1e2139;
     --draft-text: #dfe3fa;
     --header-color: #1e2139;
+    --status-draft-color: #dfe3fa;
   }
 }
 .dark-theme {
   --bg-color: #141625;
   --bg-color2: #1e2139;
+  --bg-color3: #252945;
+  --bg-color4: #0c0e16;
   --text-color: #dfe3fa;
   --text-color2: #fff;
   --text-color3: #dfe3fa;
@@ -162,6 +170,7 @@ select {
   --hover-draft-btn: #1e2139;
   --draft-text: #dfe3fa;
   --header-color: #1e2139;
+  --status-draft-color: #dfe3fa;
 }
 
 body {
@@ -170,6 +179,14 @@ body {
 
 .bg-2 {
   background-color: var(--bg-color2);
+}
+
+.bg-3 {
+  background-color: var(--bg-color3);
+}
+
+.bg-4 {
+  background-color: var(--bg-color4);
 }
 
 .text-color {
@@ -207,4 +224,12 @@ body {
 
 .header-color {
   background-color: var(--header-color);
+}
+
+.status-draft-color {
+  color: var(--status-draft-color);
+}
+
+.shadow {
+  box-shadow: 0rem 0.625rem 0.625rem -0.625rem rgba(72, 84, 159, 0.1);
 }
