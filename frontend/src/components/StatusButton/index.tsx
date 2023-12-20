@@ -20,9 +20,7 @@ const StatusButton = () => {
         />
       </button>
       {optionsOpen ? (
-        <div
-          className={`${style.shadow} w-[192px] p-6 absolute top-8 flex flex-col gap-2 rounded-lg`}
-        >
+        <div className="w-[192px] p-6 absolute top-8 flex flex-col gap-2 rounded-lg">
           <label
             className={`flex items-center gap-3 ${style.container}`}
             htmlFor="draft"
