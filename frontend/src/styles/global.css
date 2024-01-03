@@ -134,6 +134,10 @@ select {
   --draft-text: #888eb0;
   --header-color: #373b53;
   --status-draft-color: #373b53;
+  --date-picker-border: 1px solid #dfe3fa;
+  --date-picker-border-hover: 1px solid #7c5dfa;
+  --datepicker-day-color: #0c0e16;
+  --label-text-color: #7e88c3;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -153,6 +157,10 @@ select {
     --draft-text: #dfe3fa;
     --header-color: #1e2139;
     --status-draft-color: #dfe3fa;
+    --date-picker-border: 1px solid #252945;
+    --date-picker-border-hover: 1px solid #252945;
+    --datepicker-day-color: #dfe3fa;
+    --label-text-color: #dfe3fa;
   }
 }
 .dark-theme {
@@ -171,6 +179,10 @@ select {
   --draft-text: #dfe3fa;
   --header-color: #1e2139;
   --status-draft-color: #dfe3fa;
+  --date-picker-border: 1px solid #252945;
+  --date-picker-border-hover: 1px solid #252945;
+  --datepicker-day-color: #dfe3fa;
+  --label-text-color: #dfe3fa;
 }
 
 body {
@@ -229,7 +241,18 @@ body {
 .status-draft-color {
   color: var(--status-draft-color);
 }
-
+.datepicker_border {
+  border: var(--date-picker-border);
+}
+.datepicker_border:hover {
+  border: var(--date-picker-border-hover);
+}
+.datepicker-day-color {
+  color: var(--datepicker-day-color);
+}
+.label-text-color {
+  color: var(--label-text-color);
+}
 .shadow {
   box-shadow: 0rem 0.625rem 0.625rem -0.625rem rgba(72, 84, 159, 0.1);
 }
