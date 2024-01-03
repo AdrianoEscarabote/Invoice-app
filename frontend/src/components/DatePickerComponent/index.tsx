@@ -8,6 +8,7 @@ const DatePickerComponent: React.FC<DatePickerProps> = ({
   onDatePick,
   isOpen,
   label,
+  disabled,
 }) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
@@ -30,7 +31,9 @@ const DatePickerComponent: React.FC<DatePickerProps> = ({
   }, [isOpen]);
 
   const handleCalendarClick = () => {
-    setIsCalendarOpen(!isCalendarOpen);
+    if (!disabled) {
+      setIsCalendarOpen(!isCalendarOpen);
+    }
   };
 
   const handleLastMonthClick = () => {
@@ -55,7 +58,11 @@ const DatePickerComponent: React.FC<DatePickerProps> = ({
   };
 
   return (
-    <div className="flex flex-col">
+    <div
+      className={`flex flex-col ${
+        disabled ? "opacity-70 pointer-events-none" : ""
+      }`}
+    >
       <p className="BodyVariant label-text-color mb-2">{label}</p>
       <div
         className={`${style.calendar} flex items-center justify-between p-4 bg-2 rounded max-w-[240px] datepicker_border hover:cursor-pointer`}

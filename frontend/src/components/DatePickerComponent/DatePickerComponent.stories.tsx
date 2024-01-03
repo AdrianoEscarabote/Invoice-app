@@ -11,3 +11,9 @@ export default {
 } as Meta<DatePickerProps>;
 
 export const Primary: StoryObj = {};
+
+export const Disabled: StoryObj = {
+  args: {
+    disabled: true,
+  },
+};

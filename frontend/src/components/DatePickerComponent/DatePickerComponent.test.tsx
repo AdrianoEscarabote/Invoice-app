@@ -5,6 +5,7 @@ describe("DatePickerComponent", () => {
   it("should render correctly", () => {
     render(
       <DatePicker
+        disabled={false}
         label="Invoice Date"
         isOpen={false}
         date=""
@@ -17,7 +18,13 @@ describe("DatePickerComponent", () => {
     const fn = jest.fn();
 
     render(
-      <DatePicker label="Invoice Date" isOpen={false} date="" onDatePick={fn} />
+      <DatePicker
+        disabled={false}
+        label="Invoice Date"
+        isOpen={false}
+        date=""
+        onDatePick={fn}
+      />
     );
 
     const calendarDay = screen.getByTestId("calendarday-1");

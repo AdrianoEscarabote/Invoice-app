@@ -3,4 +3,5 @@ export interface DatePickerProps {
   onDatePick: (date: string) => void;
   isOpen: boolean;
   label: "Invoice Date" | "Issue Date";
+  disabled: boolean;
 }
