@@ -4,4 +4,5 @@ export interface InvoiceCardProps {
   paymentDue: string;
   clientName: string;
   total: string;
+  navigateToViewInvoice: () => void;
 }

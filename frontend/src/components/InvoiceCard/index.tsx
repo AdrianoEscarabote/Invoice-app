@@ -10,9 +10,11 @@ const InvoiceCard = ({
   id,
   paymentDue,
   total,
+  navigateToViewInvoice,
 }: InvoiceCardProps) => {
   return (
     <button
+      onClick={navigateToViewInvoice}
       className={`${style.card} shadow rounded-lg bg-2 flex items-center justify-between w-full`}
     >
       <div className="flex items-center gap-14">
