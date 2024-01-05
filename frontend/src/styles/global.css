@@ -127,6 +127,7 @@ select {
   --text-color2: #0c0e16;
   --text-color3: #7e88c3;
   --border-color: #dfe3fa;
+  --border-form-input: #dfe3fa;
   --btn-edit: #f9fafe;
   --hover-btn-edit: #dfe3fa;
   --draft-btn: #373b53;
@@ -150,6 +151,7 @@ select {
     --text-color2: #fff;
     --text-color3: #dfe3fa;
     --border-color: transparent;
+    --border-form-input: #373b53;
     --btn-edit: #252945;
     --hover-btn-edit: #fff;
     --draft-btn: #373b53;
@@ -172,6 +174,7 @@ select {
   --text-color2: #fff;
   --text-color3: #dfe3fa;
   --border-color: transparent;
+  --border-form-input: #373b53;
   --btn-edit: #252945;
   --hover-btn-edit: #fff;
   --draft-btn: #373b53;
@@ -215,6 +218,10 @@ body {
 
 .border-input {
   border-color: var(--border-color);
+}
+
+.border-form-input {
+  border-color: var(--border-form-input);
 }
 
 .btn-edit-color {
