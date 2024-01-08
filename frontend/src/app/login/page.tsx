@@ -1,13 +1,13 @@
 import "../../styles/global.css";
 import Link from "next/link";
 import style from "./style.module.css";
-import HeaderLoginPage from "./components/HeaderLoginPage";
+import HeaderLoginSignup from "@/components/HeaderLoginSignup";
 import FormLoginPage from "./components/FormLoginPage";
 
 const LoginPage = () => {
   return (
     <>
-      <HeaderLoginPage />
+      <HeaderLoginSignup />
       <main className="min-h-screen flex items-center justify-center">
         <div className="max-w-[476px] p-10 w-full bg-2 shadow flex items-center flex-col  rounded-3xl">
           <h1 className="mb-3 self-start HeadingM text-color2">Login</h1>
