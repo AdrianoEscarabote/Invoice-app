@@ -1,3 +1,5 @@
+"use client";
+
 import InputForm from "@/components/InputForm";
 import style from "./style.module.css";
 import { FormEventHandler } from "react";
