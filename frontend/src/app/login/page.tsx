@@ -1,8 +1,11 @@
 import "../../styles/global.css";
 import Link from "next/link";
-import style from "./style.module.css";
 import HeaderLoginSignup from "@/components/HeaderLoginSignup";
 import FormLoginPage from "./components/FormLoginPage";
+
+export const metadata = {
+  title: "Login",
+};
 
 const LoginPage = () => {
   return (
