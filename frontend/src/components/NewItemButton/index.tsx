@@ -7,7 +7,7 @@ const NewItemButton = ({
   ...props
 }: NewItemButtonProps) => {
   const buttonClassName = twMerge(
-    "HeadingSVariant text-color3 rounded-3xl bg-3 w-full max-w-[350px] h-12 newitemhover"
+    "HeadingSVariant text-color3 rounded-3xl bg-3 w-full h-12 newitemhover"
   );
   return (
     <button
