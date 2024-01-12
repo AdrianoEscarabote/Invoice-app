@@ -8,7 +8,7 @@ const Input = (
 ) => {
   const inputClassName = twMerge(
     className,
-    "outline-none w-full max-w-[240px] h-12 rounded-[4px] pl-5 text-almost_black border border-form-input focus:border-light_purple bg-2"
+    "outline-none w-full max-w-[240px] h-12 rounded-[4px] pl-5 text-color2 border border-form-input focus:border-light_purple bg-2"
   );
 
   return (
