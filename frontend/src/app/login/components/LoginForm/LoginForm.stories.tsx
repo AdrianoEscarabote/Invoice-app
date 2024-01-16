@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
-import FormLoginPage from ".";
+import LoginForm from ".";
 
 export default {
-  title: "login/components/FormLoginPage",
-  component: FormLoginPage,
+  title: "login/components/LoginForm",
+  component: LoginForm,
 } as Meta;
 
 export const Primary: StoryObj = {};
