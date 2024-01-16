@@ -5,7 +5,7 @@ import style from "./style.module.css";
 import { FormEventHandler } from "react";
 import ButtonForm from "@/components/ButtonForm";
 
-const FormLoginPage = () => {
+const LoginForm = () => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (ev) => {
     ev.preventDefault();
 
@@ -38,4 +38,4 @@ const FormLoginPage = () => {
     </form>
   );
 };
-export default FormLoginPage;
+export default LoginForm;
