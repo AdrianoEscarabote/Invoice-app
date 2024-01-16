@@ -1,7 +1,7 @@
 import "../../styles/global.css";
 import Link from "next/link";
 import HeaderLoginSignup from "@/components/HeaderLoginSignup";
-import FormLoginPage from "./components/FormLoginPage";
+import LoginForm from "./components/LoginForm";
 
 export const metadata = {
   title: "Login",
@@ -18,7 +18,7 @@ const LoginPage = () => {
           <p className="BodyM mb-5 self-start text-color3">
             Add your details below to get back into the app
           </p>
-          <FormLoginPage />
+          <LoginForm />
           <div className="mt-4 flex gap-1 text-color2 BodyM">
             <p>Don’t have an account?</p>
             <Link href={"/signup"} className="text-dark_purple hover:underline">
