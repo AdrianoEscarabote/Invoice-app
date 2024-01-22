@@ -13,14 +13,15 @@ const Dropdown = ({ day }: DropdownProps) => {
   };
 
   return (
-    <div className="flex flex-col max-w-[240px] w-full">
+    <div className="flex flex-col max-w-[240px] w-full relative">
       <p className="mb-[9px] BodyVariant text-color3">Payment Terms</p>
       <button
         className={`${style.button}
         ${
           dropdownActive && `${style.active}`
-        } rounded text-color2 h-12 HeadingSVariant w-full flex items-center justify-between px-4`}
+        } rounded bg-2 border border-form-input focus:border-light_purple text-color2 h-12 HeadingSVariant w-full flex items-center justify-between px-4`}
         onClick={() => setDropdownActive(!dropdownActive)}
+        type="button"
       >
         Net {dayState} {dayState === "1" ? " Day" : "Days"}
         {dropdownActive ? (
@@ -44,12 +45,13 @@ const Dropdown = ({ day }: DropdownProps) => {
       </button>
       {dropdownActive && (
         <ul
-          className={`mt-6 flex flex-col text-color2 gap-1 rounded-lg ${style.shadow} HeadingSVariant`}
+          className={`absolute top-20 w-full flex flex-col text-color2 gap-1 rounded-lg border-dropdown  HeadingSVariant bg-2`}
         >
           <li>
             <button
               className="h-12 w-full text-start px-6 hover:text-dark_purple"
               onClick={() => handleChangeDayState("1")}
+              type="button"
             >
               Net 1 Day
             </button>
@@ -58,6 +60,7 @@ const Dropdown = ({ day }: DropdownProps) => {
             <button
               className={`h-12 w-full ${style.bt} text-start px-6 hover:text-dark_purple`}
               onClick={() => handleChangeDayState("7")}
+              type="button"
             >
               Net 7 Days
             </button>
@@ -66,6 +69,7 @@ const Dropdown = ({ day }: DropdownProps) => {
             <button
               className={`h-12 w-full ${style.bt} text-start px-6 hover:text-dark_purple`}
               onClick={() => handleChangeDayState("14")}
+              type="button"
             >
               Net 14 Days
             </button>
@@ -74,6 +78,7 @@ const Dropdown = ({ day }: DropdownProps) => {
             <button
               className={`h-12 w-full ${style.bt} text-start px-6 hover:text-dark_purple`}
               onClick={() => handleChangeDayState("30")}
+              type="button"
             >
               Net 30 Days
             </button>
