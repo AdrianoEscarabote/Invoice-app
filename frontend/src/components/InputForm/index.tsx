@@ -14,8 +14,8 @@ const Input = (
   return (
     <>
       <label htmlFor={id} className="w-full flex items-start flex-col gap-2">
-        <span className="text-gray ">{labelText}</span>
-        <input ref={ref} className={inputClassName} {...props} />
+        <span className="text-color3 BodyVariant">{labelText}</span>
+        <input ref={ref} className={inputClassName} {...props} id={id} />
         {error && errorMessage && (
           <span className="mt-1 text-xs text-red-500">{errorMessage}</span>
         )}
