@@ -2,24 +2,20 @@
 
 import InputForm from "@/components/InputForm";
 import style from "./style.module.css";
-import ButtonForm from "@/components/ButtonForm";
 import { useEffect, useState } from "react";
+import ButtonForm from "@/components/ButtonForm";
 import { useForm } from "react-hook-form";
-import { SignupFormProps } from "./SignupFormProps";
+import { LoginFormProps } from "./LoginFormProps";
 import { useRouter } from "next/navigation";
 
-const SignupForm = () => {
+const LoginForm = () => {
   const url = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
+
   const [errorData, setErrorData] = useState<string>("");
+
   const [showLoadingComponent, setShowLoadingComponent] =
     useState<boolean>(false);
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    formState: { errors },
-  } = useForm<SignupFormProps>();
 
   useEffect(() => {
     const checkToken = async () => {
@@ -36,10 +32,16 @@ const SignupForm = () => {
     checkToken();
   }, []);
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormProps>();
+
   const onSubmit = handleSubmit(async (data) => {
     setShowLoadingComponent(true);
     try {
-      const response = await fetch(`${url}/auth/signup`, {
+      const response = await fetch(`${url}/auth/login`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -48,12 +50,12 @@ const SignupForm = () => {
         body: JSON.stringify(data),
       });
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         router.push("/");
         setErrorData("");
       }
-      if (response.status === 409) {
-        setErrorData("User already exists with this email");
+      if (response.status === 404) {
+        setErrorData("User not found!");
         setShowLoadingComponent(false);
       }
     } catch (error) {
@@ -91,12 +93,12 @@ const SignupForm = () => {
           )}
         </div>
 
-        <div className="flex flex-col gap-1 relative">
+        <div className="relative flex flex-col gap-1">
           <InputForm
             className={`${style.input}`}
             labelText="Create password"
             type="password"
-            placeholder="At least 8 characters"
+            placeholder="Enter your password"
             {...register("password", {
               required: "Please check again",
               minLength: {
@@ -105,7 +107,6 @@ const SignupForm = () => {
               },
             })}
           />
-
           {errors.password && (
             <span className="absolute Body right-3 top-12 text-[#EC5757]">
               {errors.password.message}
@@ -113,31 +114,9 @@ const SignupForm = () => {
           )}
         </div>
 
-        <div className="relative flex flex-col gap-1">
-          <InputForm
-            className={`${style.input}`}
-            labelText="Confirm password"
-            type="password"
-            placeholder="At least 8 characters"
-            {...register("confirm_password", {
-              required: "Please check again",
-              validate: (value) => {
-                const passwordValue = getValues("password");
-                return value === passwordValue || "Passwords do not match";
-              },
-            })}
-          />
-
-          {errors.confirm_password && (
-            <span className="absolute Body right-3 top-12 text-[#EC5757]">
-              {errors.confirm_password.message}
-            </span>
-          )}
-        </div>
-
         <ButtonForm
           disabled={false}
-          label="Create new account"
+          label="Login"
           type="submit"
           showLoadingComponent={showLoadingComponent}
         />
@@ -145,4 +124,4 @@ const SignupForm = () => {
     </form>
   );
 };
-export default SignupForm;
+export default LoginForm;

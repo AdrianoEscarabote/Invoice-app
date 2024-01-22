@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
-import SignupForm from ".";
+import LoginForm from ".";
 
 export default {
-  title: "signup/components/SignupForm",
-  component: SignupForm,
+  title: "login/components/LoginForm",
+  component: LoginForm,
   tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",

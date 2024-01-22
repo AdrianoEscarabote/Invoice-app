@@ -10,7 +10,7 @@ const StatusButton = ({ statusProp }: StatusButtonProps) => {
 
   return (
     <>
-      <HeaderLoginSignup />
+      {/* <HeaderLoginSignup /> */}
       <div className="flex flex-col relative HeadingSVariant text-color2">
         <button
           className="flex items-center gap-[14px] w-full min-w-[136px] py-3"
