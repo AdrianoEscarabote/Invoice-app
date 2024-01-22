@@ -1,5 +1,6 @@
 export interface EditInvoiceProps {
   data: Props;
+  closeEditInvoice: () => void;
 }
 
 interface Props {
