@@ -3,7 +3,7 @@ export interface EditInvoiceProps {
   closeEditInvoice: () => void;
 }
 
-interface Props {
+interface EditInvoiceProps {
   id: string;
   createdAt: string;
   paymentDue: string;

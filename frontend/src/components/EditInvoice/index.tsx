@@ -6,10 +6,19 @@ import InputForm from "../InputForm";
 import SaveButton from "../SaveButton";
 import { EditInvoiceProps } from "./EditInvoiceProps";
 import useModalFocus from "@/hooks/useModalFocus";
+import { useForm } from "react-hook-form";
 
 const EditInvoice = ({ data, closeEditInvoice }: EditInvoiceProps) => {
   const modalRef = useRef(null);
   useModalFocus(modalRef, closeEditInvoice);
+
+  const {
+    formState: { errors },
+    register,
+    handleSubmit,
+  } = useForm<EditInvoiceProps>();
+
+  const onSubmit = handleSubmit(async (data) => {});
 
   return (
     <div className="w-full" id="modal-overlay">
@@ -23,7 +32,7 @@ const EditInvoice = ({ data, closeEditInvoice }: EditInvoiceProps) => {
           Edit <span className="text-color3">#</span> {data.id}
         </h2>
 
-        <form>
+        <form onSubmit={onSubmit}>
           <fieldset>
             <legend className="sr-only">Enter edit information</legend>
 
@@ -35,6 +44,11 @@ const EditInvoice = ({ data, closeEditInvoice }: EditInvoiceProps) => {
                 className="w-full"
                 style={{ maxWidth: "unset" }}
                 id="first_element"
+                {...register("senderAddress.street", {
+                  required: "Can’t be empty",
+                })}
+                error={errors.senderAddress?.street ? true : false}
+                errorMessage={errors.senderAddress?.street?.message}
               />
 
               <div className="grid grid-cols-3 gap-6">
@@ -42,16 +56,31 @@ const EditInvoice = ({ data, closeEditInvoice }: EditInvoiceProps) => {
                   labelText="City"
                   className="w-full"
                   style={{ maxWidth: "unset" }}
+                  {...register("senderAddress.city", {
+                    required: "Can’t be empty",
+                  })}
+                  error={errors.senderAddress?.city ? true : false}
+                  errorMessage={errors.senderAddress?.city?.message}
                 />
                 <InputForm
                   labelText="Post Code"
                   className="w-full"
                   style={{ maxWidth: "unset" }}
+                  {...register("senderAddress.postCode", {
+                    required: "Can’t be empty",
+                  })}
+                  error={errors.senderAddress?.postCode ? true : false}
+                  errorMessage={errors.senderAddress?.postCode?.message}
                 />
                 <InputForm
                   labelText="Country"
                   className="w-full"
                   style={{ maxWidth: "unset" }}
+                  {...register("senderAddress.country", {
+                    required: "Can’t be empty",
+                  })}
+                  error={errors.senderAddress?.country ? true : false}
+                  errorMessage={errors.senderAddress?.country?.message}
                 />
               </div>
             </div>
@@ -62,15 +91,39 @@ const EditInvoice = ({ data, closeEditInvoice }: EditInvoiceProps) => {
 
             <div className="flex flex-col gap-6">
               <InputForm
+                labelText="Client’s Name"
+                className="w-full"
+                style={{ maxWidth: "unset" }}
+                {...register("clientName", {
+                  required: "Can’t be empty",
+                })}
+                error={errors.clientName ? true : false}
+                errorMessage={errors.clientName?.message}
+              />
+              <InputForm
                 labelText="Client’s Email"
                 className="w-full"
                 style={{ maxWidth: "unset" }}
+                {...register("clientEmail", {
+                  required: "Can’t be empty",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Invalid email!",
+                  },
+                })}
+                error={errors.clientEmail ? true : false}
+                errorMessage={errors.clientEmail?.message}
               />
 
               <InputForm
                 labelText="Street Address"
                 className="w-full"
                 style={{ maxWidth: "unset" }}
+                {...register("clientAddress.street", {
+                  required: "Can’t be empty",
+                })}
+                error={errors.clientAddress?.street ? true : false}
+                errorMessage={errors.clientAddress?.street?.message}
               />
 
               <div className="grid grid-cols-3 gap-6">
@@ -78,16 +131,31 @@ const EditInvoice = ({ data, closeEditInvoice }: EditInvoiceProps) => {
                   labelText="City"
                   className="w-full"
                   style={{ maxWidth: "unset" }}
+                  {...register("clientAddress.city", {
+                    required: "Can’t be empty",
+                  })}
+                  error={errors.clientAddress?.city ? true : false}
+                  errorMessage={errors.clientAddress?.city?.message}
                 />
                 <InputForm
                   labelText="Post Code"
                   className="w-full"
                   style={{ maxWidth: "unset" }}
+                  {...register("clientAddress.postCode", {
+                    required: "Can’t be empty",
+                  })}
+                  error={errors.clientAddress?.postCode ? true : false}
+                  errorMessage={errors.clientAddress?.postCode?.message}
                 />
                 <InputForm
                   labelText="Country"
                   className="w-full"
                   style={{ maxWidth: "unset" }}
+                  {...register("clientAddress.country", {
+                    required: "Can’t be empty",
+                  })}
+                  error={errors.clientAddress?.country ? true : false}
+                  errorMessage={errors.clientAddress?.country?.message}
                 />
               </div>
             </div>
@@ -108,6 +176,11 @@ const EditInvoice = ({ data, closeEditInvoice }: EditInvoiceProps) => {
                 labelText="Project Description"
                 className="w-full"
                 style={{ maxWidth: "unset" }}
+                {...register("description", {
+                  required: "Can’t be empty",
+                })}
+                error={errors.description ? true : false}
+                errorMessage={errors.description?.message}
               />
             </div>
 
