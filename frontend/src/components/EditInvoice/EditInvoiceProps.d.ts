@@ -1,8 +1,9 @@
 export interface EditInvoiceProps {
   data: Props;
+  closeEditInvoice: () => void;
 }
 
-interface Props {
+interface EditInvoiceProps {
   id: string;
   createdAt: string;
   paymentDue: string;

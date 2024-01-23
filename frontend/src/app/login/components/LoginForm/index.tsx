@@ -2,36 +2,20 @@
 
 import InputForm from "@/components/InputForm";
 import style from "./style.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ButtonForm from "@/components/ButtonForm";
 import { useForm } from "react-hook-form";
 import { LoginFormProps } from "./LoginFormProps";
 import { useRouter } from "next/navigation";
+import useUserAuthenticated from "@/hooks/useUserAuthenticated";
 
 const LoginForm = () => {
+  useUserAuthenticated("login");
   const url = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
-
   const [errorData, setErrorData] = useState<string>("");
-
   const [showLoadingComponent, setShowLoadingComponent] =
     useState<boolean>(false);
-
-  useEffect(() => {
-    const checkToken = async () => {
-      const response = await fetch(`${url}/auth/checktoken`, {
-        method: "GET",
-        credentials: "include",
-      });
-
-      if (response.status === 200) {
-        router.push(`/`);
-        setErrorData("");
-      }
-    };
-    checkToken();
-  }, []);
-
   const {
     register,
     handleSubmit,
@@ -72,47 +56,36 @@ const LoginForm = () => {
             {errorData}
           </p>
         )}
-        <div className="relative flex flex-col gap-1">
-          <InputForm
-            placeholder="e.g. alex@email.com"
-            className={`${style.input}`}
-            labelText="Email address"
-            {...register("email", {
-              required: "Can’t be empty",
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "Invalid email!",
-              },
-            })}
-          />
+        <InputForm
+          placeholder="e.g. alex@email.com"
+          className={`${style.input}`}
+          labelText="Email address"
+          {...register("email", {
+            required: "Can’t be empty",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "Invalid email!",
+            },
+          })}
+          error={errors.email?.message ? true : false}
+          errorMessage={errors.email?.message}
+        />
 
-          {errors.email && (
-            <span className="absolute Body right-3 top-12 text-[#EC5757]">
-              {errors.email.message}
-            </span>
-          )}
-        </div>
-
-        <div className="relative flex flex-col gap-1">
-          <InputForm
-            className={`${style.input}`}
-            labelText="Create password"
-            type="password"
-            placeholder="Enter your password"
-            {...register("password", {
-              required: "Please check again",
-              minLength: {
-                value: 8,
-                message: "Password must be at least 8 characters",
-              },
-            })}
-          />
-          {errors.password && (
-            <span className="absolute Body right-3 top-12 text-[#EC5757]">
-              {errors.password.message}
-            </span>
-          )}
-        </div>
+        <InputForm
+          className={`${style.input}`}
+          labelText="Create password"
+          type="password"
+          placeholder="Enter your password"
+          {...register("password", {
+            required: "Please check again",
+            minLength: {
+              value: 8,
+              message: "Password must be at least 8 characters",
+            },
+          })}
+          error={errors.password?.message ? true : false}
+          errorMessage={errors.password?.message}
+        />
 
         <ButtonForm
           disabled={false}
