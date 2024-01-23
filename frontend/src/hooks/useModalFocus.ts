@@ -10,10 +10,8 @@ const useModalFocus = (modalRef, onClose) => {
     const handleTabKey = (e) => {
       const modalElement = modalRef.current;
 
-      if (modalElement && e.key === "Tab" && !e.shiftKey) {
-        const focusableElements = (
-          modalElement as HTMLElement
-        ).querySelectorAll(
+      if (modalElement && e.key === "Tab") {
+        const focusableElements = modalElement.querySelectorAll(
           "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
         );
 
@@ -24,8 +22,11 @@ const useModalFocus = (modalRef, onClose) => {
             focusableElements.length - 1
           ] as HTMLElement | null;
 
-          if (
-            lastFocusableElement &&
+          if (e.shiftKey && document.activeElement === firstFocusableElement) {
+            e.preventDefault();
+            lastFocusableElement?.focus();
+          } else if (
+            !e.shiftKey &&
             document.activeElement === lastFocusableElement
           ) {
             e.preventDefault();
