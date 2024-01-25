@@ -3,18 +3,20 @@ import { DropdownProps } from "./DropdownProps";
 import Image from "next/image";
 import style from "./style.module.css";
 
-const Dropdown = ({ day }: DropdownProps) => {
+const Dropdown = ({ day, setValue, ...props }: DropdownProps) => {
   const [dropdownActive, setDropdownActive] = useState<boolean>(false);
   const [dayState, setDayState] = useState(day);
 
   const handleChangeDayState = (param: "1" | "7" | "14" | "30") => {
     setDayState(param);
     setDropdownActive(!dropdownActive);
+    setValue("paymentTerms", param);
   };
 
   return (
     <div className="flex flex-col max-w-[240px] w-full relative">
       <p className="mb-[9px] BodyVariant text-color3">Payment Terms</p>
+      <input type="hidden" value={dayState} {...props} />
       <button
         className={`${style.button}
         ${
