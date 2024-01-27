@@ -1,32 +1,34 @@
-import { InvoiceTypes } from "./InvoiceDataTypes";
+import { dataTypes } from "../redux-types";
 
-export const initialState: InvoiceTypes = {
-  id: "",
-  clientName: "",
-  createdAt: "",
-  description: "",
-  paymentDue: "",
-  paymentTerms: "",
-  status: "",
-  clientAdress: {
-    city: "",
-    country: "",
-    postCode: "",
-    street: "",
-  },
-  items: [
-    {
-      name: "",
-      price: 0,
-      quantity: 0,
-      total: 0,
+interface initialStateType {
+  invoices: dataTypes[];
+  selectedInvoice: dataTypes;
+}
+
+export const initialState: initialStateType = {
+  invoices: [],
+  selectedInvoice: {
+    id: "",
+    createdAt: "",
+    paymentDue: "",
+    description: "",
+    paymentTerms: "1",
+    clientName: "",
+    clientEmail: "",
+    status: "Draft",
+    senderAddress: {
+      street: "",
+      city: "",
+      postCode: "",
+      country: "",
     },
-  ],
-  senderAdress: {
-    city: "",
-    country: "",
-    postCode: "",
-    street: "",
+    clientAddress: {
+      city: "",
+      street: "",
+      postCode: "",
+      country: "",
+    },
+    items: [],
+    total: 0,
   },
-  total: 0,
 };

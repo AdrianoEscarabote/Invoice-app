@@ -24,11 +24,12 @@ interface InvoiceTypes {
   createdAt: string;
   paymentDue: string;
   description: string;
-  paymentTerms: string;
+  paymentTerms: "1" | "7" | "14" | "30";
   clientName: string;
-  status: string;
-  senderAdress: SenderAddressTypes;
-  clientAdress: clientAddressTypes;
+  clientEmail: string;
+  status: "Pending" | "Paid" | "Draft";
+  senderAddress: SenderAddressTypes;
+  clientAddress: clientAddressTypes;
   items: ItemTypes[];
   total: number;
 }
