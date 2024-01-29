@@ -23,6 +23,7 @@ export class MongoSignupUserRepository implements ISignupUserRepository {
     const userData: MongoUser = {
       email: params.email,
       password: passwordHash,
+      invoices: [],
     }
 
     const { insertedId } = await MongoClient.db
