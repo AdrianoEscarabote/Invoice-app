@@ -1,3 +1,3 @@
-export interface DeleteButtonProps {
-  onClick: () => void;
-}
+import { ComponentPropsWithoutRef } from "react";
+
+export interface DeleteButtonProps extends ComponentPropsWithoutRef<"button"> {}

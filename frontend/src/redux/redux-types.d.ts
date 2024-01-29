@@ -19,7 +19,7 @@ interface ItemTypes {
   total: number;
 }
 
-interface InvoiceTypes {
+interface dataTypes {
   id: string;
   createdAt: string;
   paymentDue: string;
@@ -34,4 +34,15 @@ interface InvoiceTypes {
   total: number;
 }
 
-export { InvoiceTypes, ItemTypes, SenderAddressTypes, clientAddressTypes };
+interface DraftSlice {
+  data: dataTypes;
+  hasSavedData: boolean;
+}
+
+export {
+  DraftSlice,
+  dataTypes,
+  ItemTypes,
+  SenderAddressTypes,
+  clientAddressTypes,
+};
