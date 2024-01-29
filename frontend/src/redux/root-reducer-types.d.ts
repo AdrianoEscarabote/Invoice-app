@@ -1,9 +1,6 @@
-export interface EditInvoiceProps {
-  data: Props;
-  closeEditInvoice: () => void;
-}
+import { ItemTypes, dataTypes } from "./redux-types";
 
-interface EditInvoiceProps {
+interface SelectedInvoiceTypes {
   id: string;
   createdAt: string;
   paymentDue: string;
@@ -11,7 +8,7 @@ interface EditInvoiceProps {
   paymentTerms: number;
   clientName: string;
   clientEmail: string;
-  status: string;
+  status: "Paid" | "Pending" | "Draft";
   senderAddress: {
     street: string;
     city: string;
@@ -24,13 +21,19 @@ interface EditInvoiceProps {
     postCode: string;
     country: string;
   };
-  items: Item[];
+  items: ItemTypes[];
   total: number;
 }
 
-interface Item {
-  name: string;
-  quantity: number;
-  price: number;
-  total: number;
+interface rootState {
+  draftSlice: {
+    data: dataTypes;
+    hasSavedData: boolean;
+  };
+  invoiceSlice: {
+    selectedInvoice: SelectedInvoiceTypes;
+    invoices: dataTypes[];
+  };
 }
+
+export { rootState };
