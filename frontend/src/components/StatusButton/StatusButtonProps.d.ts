@@ -1,4 +1,4 @@
-export type statusType = "Draft" | "Pending" | "Paid";
 export interface StatusButtonProps {
-  statusProp: "Draft" | "Pending" | "Paid";
+  statusProp?: "Draft" | "Pending" | "Paid";
+  setStatus: Dispatch<SetStateAction<statusType | undefined>>;
 }

@@ -1,6 +1,3 @@
-.button {
-  border: 0.0625rem solid #dfe3fa;
-}
 .button:hover {
   border: 0.0625rem solid #7c5dfa !important;
 }
@@ -9,7 +6,4 @@
 }
 .bt {
   border-top: 0.0625rem solid #dfe3fa !important;
-}
-.shadow {
-  box-shadow: 0rem 0.625rem 1.25rem 0rem rgba(72, 84, 159, 0.25);
 }

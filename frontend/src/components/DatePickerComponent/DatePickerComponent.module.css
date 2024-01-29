@@ -6,7 +6,11 @@
 .calendar__calendar {
   display: none;
 }
+.active {
+  border: 0.0625rem solid #7c5dfa !important;
+}
 .calendar__calendar_open {
+  border: 0.0625rem solid #7c5dfa !important;
   display: flex;
 }
 .calendar__month_change {
