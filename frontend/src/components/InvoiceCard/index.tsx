@@ -26,7 +26,9 @@ const InvoiceCard = ({
           </p>
 
           <p className="BodyVariant text-color3">
-            {format(new Date(paymentDue), "dd MMM yyyy")}
+            {paymentDue
+              ? `Due ${format(new Date(paymentDue), "dd MMM yyyy")}`
+              : null}
           </p>
         </div>
 
