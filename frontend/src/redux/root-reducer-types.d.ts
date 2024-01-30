@@ -34,6 +34,7 @@ interface rootState {
     selectedInvoice: SelectedInvoiceTypes;
     invoices: dataTypes[];
   };
+  itemsSlice: ItemTypes[];
 }
 
 export { rootState };
