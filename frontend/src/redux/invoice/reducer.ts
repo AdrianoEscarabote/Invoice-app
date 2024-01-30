@@ -6,6 +6,12 @@ const invoiceSlice = createSlice({
   name: "invoiceSlice",
   initialState,
   reducers: {
+    setInvoices: (state, action: PayloadAction<InvoiceTypes[]>) => {
+      const newInvoices = action.payload;
+      if (newInvoices.length > 0) {
+        state.invoices = newInvoices;
+      }
+    },
     markAsPaid: (state) => {
       state.invoices = state.invoices.map((invoice) => {
         if (invoice.id === state.selectedInvoice.id) {
@@ -40,5 +46,10 @@ const invoiceSlice = createSlice({
 
 export default invoiceSlice.reducer;
 
-export const { markAsPaid, deleteInvoice, createInvoice, selectInvoice } =
-  invoiceSlice.actions;
+export const {
+  setInvoices,
+  markAsPaid,
+  deleteInvoice,
+  createInvoice,
+  selectInvoice,
+} = invoiceSlice.actions;
