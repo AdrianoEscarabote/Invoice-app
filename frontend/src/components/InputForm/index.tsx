@@ -8,16 +8,27 @@ const Input = (
 ) => {
   const inputClassName = twMerge(
     className,
-    "outline-none w-full max-w-[240px] h-12 rounded-[4px] pl-5 text-almost_black border border-form-input focus:border-light_purple bg-2"
+    `${
+      error ? "border-red" : "border-form-input focus:border-light_purple"
+    } outline-none w-full max-w-[240px] h-12 rounded-[4px] pl-5 text-color2 border bg-2`
   );
 
   return (
     <>
-      <label htmlFor={id} className="w-full flex items-start flex-col gap-2">
-        <span className="text-gray ">{labelText}</span>
-        <input ref={ref} className={inputClassName} {...props} />
+      <label
+        htmlFor={id}
+        className="relative w-full flex items-start flex-col gap-2"
+      >
+        <span
+          className={`${error ? "text-[#EC5757]" : "text-color3"} BodyVariant`}
+        >
+          {labelText}
+        </span>
+        <input ref={ref} className={inputClassName} {...props} id={id} />
         {error && errorMessage && (
-          <span className="mt-1 text-xs text-red-500">{errorMessage}</span>
+          <span className="absolute right-0 top-0 text-xs text-[#EC5757]">
+            {errorMessage}
+          </span>
         )}
       </label>
     </>
