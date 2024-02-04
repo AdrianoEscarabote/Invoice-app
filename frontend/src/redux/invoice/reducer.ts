@@ -13,6 +13,7 @@ const invoiceSlice = createSlice({
       }
     },
     markAsPaid: (state) => {
+      state.selectedInvoice.status = "Paid";
       state.invoices = state.invoices.map((invoice) => {
         if (invoice.id === state.selectedInvoice.id) {
           invoice.status = "Paid";
