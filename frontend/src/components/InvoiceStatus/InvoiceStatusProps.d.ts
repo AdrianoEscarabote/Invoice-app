@@ -1,3 +1,3 @@
 export interface InvoiceStatusProps {
-  status: "Pending" | "Paid" | "Draft";
+  statusProp?: "Pending" | "Paid" | "Draft";
 }

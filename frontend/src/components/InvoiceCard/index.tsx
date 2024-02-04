@@ -39,7 +39,7 @@ const InvoiceCard = ({
         <p className="HeadingS text-color2 flex ">£ {total}</p>
 
         <div className="flex items-center gap-5">
-          <InvoiceStatus status={status} />
+          <InvoiceStatus statusProp={status} />
           <Image
             src={"/assets/icon-arrow-right.svg"}
             width={8}
