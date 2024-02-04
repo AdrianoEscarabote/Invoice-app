@@ -3,6 +3,6 @@ export interface InvoiceCardProps {
   id: string;
   paymentDue: string;
   clientName: string;
-  total: string;
+  total: number;
   navigateToViewInvoice: () => void;
 }

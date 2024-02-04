@@ -26,7 +26,9 @@ const InvoiceCard = ({
           </p>
 
           <p className="BodyVariant text-color3">
-            {format(new Date(paymentDue), "dd MMM yyyy")}
+            {paymentDue
+              ? `Due ${format(new Date(paymentDue), "dd MMM yyyy")}`
+              : null}
           </p>
         </div>
 
@@ -37,7 +39,7 @@ const InvoiceCard = ({
         <p className="HeadingS text-color2 flex ">£ {total}</p>
 
         <div className="flex items-center gap-5">
-          <InvoiceStatus status={status} />
+          <InvoiceStatus statusProp={status} />
           <Image
             src={"/assets/icon-arrow-right.svg"}
             width={8}
