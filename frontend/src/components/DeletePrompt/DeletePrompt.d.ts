@@ -2,6 +2,7 @@ import { RefObject } from "react";
 
 interface DeletePromptProps {
   closePrompt?: () => void;
+  DeleteFn?: () => void;
   invoice: string;
 }
 

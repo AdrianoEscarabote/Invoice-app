@@ -1,58 +1,49 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import DeleteButton from "../DeleteButton";
 import { DeletePromptProps } from "./DeletePrompt";
 import CancelButton from "../CancelButton";
+import useModalFocus from "@/hooks/useModalFocus";
 
-const DeletePrompt = ({ invoice, closePrompt }: DeletePromptProps) => {
+const DeletePrompt = ({
+  invoice,
+  closePrompt,
+  DeleteFn,
+}: DeletePromptProps) => {
+  const modalRef = useRef(null);
+  const [deleteClicked, setDeleteClicked] = useState<boolean>(false);
+  useModalFocus(modalRef, closePrompt);
+
   useEffect(() => {
-    const handleTabKey = (e) => {
-      const modalElement = document.getElementById("modal-overlay");
-      modalElement?.focus();
-      const focusableElements = modalElement?.querySelectorAll("button");
-
-      if (focusableElements && focusableElements.length > 0) {
-        const firstFocusableElement = focusableElements[0] as HTMLElement;
-        const lastFocusableElement = focusableElements[
-          focusableElements.length - 1
-        ] as HTMLElement;
-
-        if (e.key === "Tab" || e.keyCode === 9) {
-          if (!e.shiftKey && document.activeElement === lastFocusableElement) {
-            e.preventDefault();
-            firstFocusableElement.focus();
-          } else if (
-            e.shiftKey &&
-            document.activeElement === firstFocusableElement
-          ) {
-            e.preventDefault();
-            lastFocusableElement.focus();
-          }
+    const deleteInvoice = async () => {
+      if (deleteClicked) {
+        try {
+          await fetch(`${process.env.NEXT_PUBLIC_API_URL}/invoice/${invoice}`, {
+            method: "DELETE",
+            credentials: "include",
+          });
+        } catch (error) {
+          console.error("Error ", error);
         }
       }
     };
 
-    document.addEventListener("keydown", handleTabKey);
+    deleteInvoice();
+  }, [deleteClicked]);
 
-    const handleClosePrompt = (ev: KeyboardEvent) => {
-      if (ev.key === "Escape") {
-        if (closePrompt) closePrompt();
-      }
-    };
+  const handleDeleteInvoice = () => {
+    setDeleteClicked(true);
 
-    window.addEventListener("keydown", handleClosePrompt);
-
-    return () => {
-      window.removeEventListener("keydown", handleClosePrompt);
-      document.removeEventListener("keydown", handleTabKey);
-    };
-  }, []);
+    if (DeleteFn) {
+      DeleteFn();
+    }
+  };
 
   return (
     <div
-      id="modal-overlay"
-      tabIndex={-1}
+      ref={modalRef}
+      tabIndex={0}
       className="fixed top-0 left-0 h-screen w-full flex items-center justify-center z-50 bg-[#1d1d1d93]"
       onClick={closePrompt}
     >
@@ -65,13 +56,13 @@ const DeletePrompt = ({ invoice, closePrompt }: DeletePromptProps) => {
       >
         <h2 className="HeadingM mb-3 text-color2">Confirm Deletion</h2>
         <p className="Body draft-btn" style={{ background: "unset" }}>
-          Are you sure you want to delete invoice {invoice}? This action cannot
+          Are you sure you want to delete invoice #{invoice}? This action cannot
           be undone.
         </p>
 
         <div className="flex gap-2 w-full justify-end mt-3">
-          <CancelButton CancelFn={closePrompt} />
-          <DeleteButton />
+          <CancelButton CancelFn={closePrompt} id="first_element" />
+          <DeleteButton onClick={handleDeleteInvoice} />
         </div>
       </div>
     </div>
