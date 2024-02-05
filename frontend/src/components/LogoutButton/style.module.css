@@ -1,0 +1,14 @@
+.logout_option {
+  position: absolute;
+}
+
+.arrow {
+  border: 0.0625rem solid #9277ff;
+  border-right: unset;
+  border-top: unset;
+  position: absolute;
+  left: -0.5625rem;
+  width: 1rem;
+  height: 1rem;
+  transform: rotate(45deg);
+}
