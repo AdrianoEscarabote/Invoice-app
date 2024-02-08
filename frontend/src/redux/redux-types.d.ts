@@ -34,15 +34,4 @@ interface dataTypes {
   total: number;
 }
 
-interface DraftSlice {
-  data: dataTypes;
-  hasSavedData: boolean;
-}
-
-export {
-  DraftSlice,
-  dataTypes,
-  ItemTypes,
-  SenderAddressTypes,
-  clientAddressTypes,
-};
+export { dataTypes, ItemTypes, SenderAddressTypes, clientAddressTypes };
