@@ -26,10 +26,6 @@ interface SelectedInvoiceTypes {
 }
 
 interface rootState {
-  draftSlice: {
-    data: dataTypes;
-    hasSavedData: boolean;
-  };
   invoiceSlice: {
     selectedInvoice: SelectedInvoiceTypes;
     invoices: dataTypes[];
