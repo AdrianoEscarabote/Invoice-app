@@ -7,7 +7,7 @@ import store from "@/redux/store";
 
 export default function Home() {
   return (
-    <div className="flex">
+    <div className="container_page flex">
       <Header />
       <Provider store={store}>
         <Invoice />
