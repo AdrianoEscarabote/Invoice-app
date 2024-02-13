@@ -68,6 +68,11 @@ select {
     scroll-behavior: auto !important;
   }
 }
+@media (max-width: 48rem) {
+  .container_page {
+    flex-direction: column;
+  }
+}
 .HeadingL {
   font-size: 2.25rem;
   font-weight: 700;
