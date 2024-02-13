@@ -46,7 +46,7 @@ const Header = () => {
           </button>
         </div>
         {showLogoutOption ? (
-          <div className="absolute -right-4 top-16">
+          <div className={`${style.container_logout} absolute -right-4 top-16`}>
             <LogoutButton />
           </div>
         ) : null}
