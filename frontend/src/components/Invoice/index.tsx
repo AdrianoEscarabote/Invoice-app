@@ -15,6 +15,7 @@ import {
 } from "@/redux/invoice/invoice.selector";
 import NothingHereComponent from "../NothingHereComponent";
 import useInvoices from "@/hooks/useInvoices";
+import useWindowSize from "@/hooks/useWindowSize";
 
 export type statusType = "Draft" | "Pending" | "Paid";
 
@@ -48,6 +49,8 @@ const Invoice = () => {
     setShowOpenViewInvoice(!showViewInvoice);
   };
 
+  const { screenSize } = useWindowSize();
+
   return (
     <>
       {!showViewInvoice ? (
@@ -55,19 +58,41 @@ const Invoice = () => {
           <section className="relative pt-16 px-6 flex flex-col items-center justify-start min-h-screen w-full">
             <div className="max-w-[730px] w-full flex items-center justify-between">
               <div>
-                <h1 className="HeadingL text-color2">Invoices</h1>
-                <p className="BodyVariant mt-[6px] text-color">
-                  {filteredInvoices.length === 0 && status
-                    ? "There are 0 total invoices"
-                    : `There ${
-                        invoicesCountFiltered === 0
-                          ? "are " + invoicesCount
-                          : "are " + invoicesCountFiltered
-                      } total invoices`}
-                </p>
+                <h1
+                  className={`${
+                    screenSize === "desktop" ? "HeadingL" : "HeadingM"
+                  } text-color2`}
+                >
+                  Invoices
+                </h1>
+                {screenSize === "desktop" ? (
+                  <p className="BodyVariant mt-[6px] text-color">
+                    {filteredInvoices.length === 0 && status
+                      ? "There are 0 total invoices"
+                      : `There ${
+                          invoicesCountFiltered === 0
+                            ? "are " + invoicesCount
+                            : "are " + invoicesCountFiltered
+                        } total invoices`}
+                  </p>
+                ) : (
+                  <p className="BodyVariant mt-[6px] text-color">
+                    {filteredInvoices.length === 0 && status
+                      ? "0 invoices"
+                      : `${
+                          invoicesCountFiltered === 0
+                            ? invoicesCount
+                            : invoicesCountFiltered
+                        } invoices`}
+                  </p>
+                )}
               </div>
 
-              <div className="flex items-center gap-10">
+              <div
+                className={`flex items-center ${
+                  screenSize === "desktop" ? "gap-10" : "gap-4"
+                }`}
+              >
                 <StatusButton statusProp={status} setStatus={setStatus} />
                 <InvoiceButton
                   disabled={false}
