@@ -2,17 +2,19 @@ import Image from "next/image";
 import { useState } from "react";
 import style from "./style.module.css";
 import { StatusButtonProps } from "./StatusButtonProps";
+import useWindowSize from "@/hooks/useWindowSize";
 
 const StatusButton = ({ statusProp, setStatus }: StatusButtonProps) => {
   const [optionsOpen, setOptionsOpen] = useState<boolean>(false);
+  const { screenSize } = useWindowSize();
 
   return (
     <div className="flex flex-col relative HeadingSVariant text-color2">
       <button
-        className="flex items-center gap-[14px] w-full min-w-[136px] py-3"
+        className={`${style.button} flex items-center gap-[14px] w-full min-w-[136px] py-3`}
         onClick={() => setOptionsOpen(!optionsOpen)}
       >
-        Filter by Status
+        {screenSize === "desktop" ? "Filter by Status" : "Filter"}
         <Image
           src={"/assets/icon-arrow-down.svg"}
           alt="icon arrow"
