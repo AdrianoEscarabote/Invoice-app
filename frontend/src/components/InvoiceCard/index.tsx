@@ -1,8 +1,7 @@
-import Image from "next/image";
-import InvoiceStatus from "../InvoiceStatus";
 import { InvoiceCardProps } from "./InvoiceCardProps";
-import { format } from "date-fns/format";
-import style from "./stlye.module.css";
+import useWindowSize from "@/hooks/useWindowSize";
+import DesktopInvoiceCard from "../DesktopInvoiceCard";
+import MobileInvoiceCard from "../MobileInvoiceCard";
 
 const InvoiceCard = ({
   status,
@@ -12,43 +11,29 @@ const InvoiceCard = ({
   total,
   navigateToViewInvoice,
 }: InvoiceCardProps) => {
+  const { screenSize } = useWindowSize();
   return (
-    <button
-      onClick={navigateToViewInvoice}
-      className={`${style.card} shadow rounded-lg bg-2 flex items-center justify-between w-full`}
-    >
-      <div className="flex items-center gap-14">
-        <div className="flex items-center gap-11">
-          <p className="flex items-center text-color2 HeadingSVariant">
-            <span className="HeadingSVariant text-color3">#</span>
-
-            {id}
-          </p>
-
-          <p className="BodyVariant text-color3">
-            {paymentDue
-              ? `Due ${format(new Date(paymentDue), "dd MMM yyyy")}`
-              : null}
-          </p>
-        </div>
-
-        <p className="BodyVariant text-color3">{clientName}</p>
-      </div>
-
-      <div className="flex gap-5 items-center">
-        <p className="HeadingS text-color2 flex ">£ {total}</p>
-
-        <div className="flex items-center gap-5">
-          <InvoiceStatus statusProp={status} />
-          <Image
-            src={"/assets/icon-arrow-right.svg"}
-            width={8}
-            height={12}
-            alt="icon arrow"
-          />
-        </div>
-      </div>
-    </button>
+    <>
+      {screenSize === "mobile" ? (
+        <MobileInvoiceCard
+          status={status}
+          clientName={clientName}
+          id={id}
+          paymentDue={paymentDue}
+          total={total}
+          navigateToViewInvoice={navigateToViewInvoice}
+        />
+      ) : (
+        <DesktopInvoiceCard
+          status={status}
+          clientName={clientName}
+          id={id}
+          paymentDue={paymentDue}
+          total={total}
+          navigateToViewInvoice={navigateToViewInvoice}
+        />
+      )}
+    </>
   );
 };
 
