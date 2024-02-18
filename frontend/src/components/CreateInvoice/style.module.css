@@ -1,0 +1,32 @@
+@media (max-width: 48rem) {
+  .container {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    max-width: 100%;
+    padding: 2rem;
+    border-radius: 0rem;
+  }
+  .container_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+  }
+
+  .container_grid > :nth-child(3) {
+    grid-column: span 2;
+  }
+  .container_datepicker {
+    display: flex;
+    flex-direction: column;
+  }
+  .fieldset {
+    margin-bottom: 6.25rem;
+  }
+}
+
+@media (max-width: 23.4375rem) {
+  .container {
+    padding: 1rem;
+  }
+}

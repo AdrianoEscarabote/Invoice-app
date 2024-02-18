@@ -8,14 +8,18 @@ import { CreateInvoiceData, CreateInvoiceProps } from "./CreateInvoiceProps";
 import { rootState } from "@/redux/root-reducer-types";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useModalFocus from "@/hooks/useModalFocus";
 import ItemList from "../ItemList";
 import { cleanItems } from "@/redux/items/reducer";
 import useCreateInvoice from "@/hooks/useCreateInvoice";
+import useWindowSize from "@/hooks/useWindowSize";
+import Image from "next/image";
+import style from "./style.module.css";
 
 const CreateInvoice = ({ closeCreateInvoice }: CreateInvoiceProps) => {
   const modalRef = useRef(null);
+  const { width, screenSize } = useWindowSize();
   useModalFocus(modalRef, closeCreateInvoice);
   const { handleCallApi } = useCreateInvoice();
   const dispatch = useDispatch();
@@ -76,12 +80,27 @@ const CreateInvoice = ({ closeCreateInvoice }: CreateInvoiceProps) => {
         ref={modalRef}
         tabIndex={0}
         onClick={(e) => e.stopPropagation()}
-        className="max-w-[38.5625rem] absolute max-h-screen overflow-y-scroll left-0 top-0 bottom-0 bg-1 rounded-se-[20px] rounded-ee-[20px] px-14 pt-14 z-50 custom_scrollbar"
+        className={`${style.container} max-w-[38.5625rem] absolute max-h-screen overflow-y-scroll left-0 top-0 bottom-0 bg-1 rounded-se-[20px] rounded-ee-[20px] px-14 pt-14 z-50 custom_scrollbar`}
       >
+        {width < 768 ? (
+          <button
+            onClick={closeCreateInvoice}
+            className="HeadingSVariant mb-4 text-color2 flex items-center gap-6 py-2 max-w-[97px] hover:text-[#888EB0]"
+          >
+            <Image
+              alt="icon arrow"
+              width={8}
+              height={4}
+              src={"/assets/icon-arrow-left.svg"}
+            />
+            Go Back
+          </button>
+        ) : null}
+
         <h2 className="HeadingM text-color2 mb-11">New Invoice</h2>
 
         <form onSubmit={onSubmit}>
-          <fieldset>
+          <fieldset className={`${style.fieldset}`}>
             <legend className="sr-only">Enter edit information</legend>
 
             <h3 className="text-dark_purple HeadingSVariant mb-6">Bill From</h3>
@@ -100,7 +119,7 @@ const CreateInvoice = ({ closeCreateInvoice }: CreateInvoiceProps) => {
                 errorMessage={errors.senderAddress?.street?.message}
               />
 
-              <div className="grid grid-cols-3 gap-6">
+              <div className={`${style.container_grid} grid grid-cols-3 gap-6`}>
                 <InputForm
                   labelText="City"
                   className="w-full"
@@ -182,7 +201,7 @@ const CreateInvoice = ({ closeCreateInvoice }: CreateInvoiceProps) => {
                 errorMessage={errors.clientAddress?.street?.message}
               />
 
-              <div className="grid grid-cols-3 gap-6">
+              <div className={`${style.container_grid} grid grid-cols-3 gap-6`}>
                 <InputForm
                   labelText="City"
                   className="w-full"
@@ -220,7 +239,9 @@ const CreateInvoice = ({ closeCreateInvoice }: CreateInvoiceProps) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 mt-7">
+            <div
+              className={`${style.container_datepicker} grid grid-cols-2 gap-6 mt-7`}
+            >
               <DatePickerComponent
                 disabled={false}
                 label="Invoice Date"
@@ -250,18 +271,40 @@ const CreateInvoice = ({ closeCreateInvoice }: CreateInvoiceProps) => {
             </div>
 
             <div>
-              <ItemList renderList={false} />
+              <ItemList />
             </div>
 
-            <div className="w-full flex mt-10 mb-6">
-              <button
-                className="w-full max-w-[96px] h-12 rounded-3xl bg-[#f9fafe] HeadingSVariant text-[#7e88c3]"
-                type="button"
-                onClick={closeCreateInvoice}
+            {width > 768 ? (
+              <div className="w-full flex mt-10 mb-6">
+                <button
+                  className="w-full max-w-[96px] h-12 rounded-3xl bg-[#f9fafe] HeadingSVariant text-[#7e88c3]"
+                  type="button"
+                  onClick={closeCreateInvoice}
+                >
+                  Discard
+                </button>
+                <div className="flex gap-2 w-full justify-end">
+                  <DraftButton
+                    aria-label="draft button"
+                    onClick={handleSaveDraft}
+                    type="button"
+                  />
+                  <SaveButton label="Save & Send" type="submit" />
+                </div>
+              </div>
+            ) : (
+              <div
+                className="mt-16 flex items-center justify-center gap-2 bg-2 fixed
+               bottom-0 left-0 px-6 h-[90px] w-full"
               >
-                Discard
-              </button>
-              <div className="flex gap-2 w-full justify-end">
+                <button
+                  className="w-full max-w-[96px] h-12 rounded-3xl bg-[#f9fafe] HeadingSVariant text-[#7e88c3]"
+                  type="button"
+                  onClick={closeCreateInvoice}
+                >
+                  Discard
+                </button>
+
                 <DraftButton
                   aria-label="draft button"
                   onClick={handleSaveDraft}
@@ -269,16 +312,18 @@ const CreateInvoice = ({ closeCreateInvoice }: CreateInvoiceProps) => {
                 />
                 <SaveButton label="Save & Send" type="submit" />
               </div>
-            </div>
+            )}
           </fieldset>
         </form>
       </section>
-      <div
-        id="modal-overlay"
-        tabIndex={-1}
-        className="absolute top-0 right-0 h-screen w-[100%] flex items-center justify-center bg-[#1d1d1d93]"
-        onClick={closeCreateInvoice}
-      ></div>
+      {width > 768 ? (
+        <div
+          id="modal-overlay"
+          tabIndex={-1}
+          className="absolute top-0 right-0 h-screen w-[100%] flex items-center justify-center bg-[#1d1d1d93]"
+          onClick={closeCreateInvoice}
+        ></div>
+      ) : null}
     </div>
   );
 };
