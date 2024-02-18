@@ -281,3 +281,6 @@ body {
 .border-dropdown {
   box-shadow: var(--border-dropdown);
 }
+.overflow_hidden {
+  overflow-y: hidden;
+}
