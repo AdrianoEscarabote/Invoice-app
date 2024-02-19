@@ -2,3 +2,20 @@
   display: grid;
   grid-template-columns: 13.375rem 2.875rem 6.25rem 2.5rem 0.625rem;
 }
+
+@media (max-width: 36rem) {
+  .grid {
+    grid-template-columns: 1fr 2fr 2fr 1fr;
+    grid-template-rows: repeat(2, auto);
+  }
+
+  .grid > :nth-child(1) {
+    grid-column: span 4;
+  }
+}
+
+@media (max-width: 23.4375rem) {
+  .grid {
+    grid-template-columns: 1fr 3fr 1fr 1fr;
+  }
+}

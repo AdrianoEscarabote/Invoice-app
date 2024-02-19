@@ -12,6 +12,13 @@
 }
 
 @media (max-width: 48rem) {
+  .container_logout {
+    position: absolute !important;
+    bottom: 0;
+    top: 70px !important;
+    right: 0;
+    left: 2.5rem;
+  }
   .header {
     min-height: 5rem !important;
     height: 5rem !important;

@@ -38,3 +38,9 @@
   font-size: 1.125rem;
   color: white;
 }
+
+@media (max-width: 38.75rem) {
+  .button {
+    min-width: 3.9375rem !important;
+  }
+}

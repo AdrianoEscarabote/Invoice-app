@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { InvoiceButtonProps } from "./InvoiceButtonProps";
 import { twMerge } from "tailwind-merge";
+import useWindowSize from "@/hooks/useWindowSize";
 
 const InvoiceButton: React.FC<InvoiceButtonProps> = ({
   onClick,
@@ -12,7 +13,7 @@ const InvoiceButton: React.FC<InvoiceButtonProps> = ({
     "HeadingSVariant bg-dark_purple hover:bg-light_purple text-white flex items-center  rounded-3xl gap-3 w-full max-w-[150px] h-12 p-2",
     className
   );
-
+  const { screenSize } = useWindowSize();
   return (
     <button
       onClick={onClick}
@@ -28,7 +29,7 @@ const InvoiceButton: React.FC<InvoiceButtonProps> = ({
           height={22}
         />
       </div>
-      New Invoice
+      {screenSize === "desktop" ? "New Invoice" : "New"}
     </button>
   );
 };
