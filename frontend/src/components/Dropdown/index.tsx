@@ -14,7 +14,7 @@ const Dropdown = ({ day, setValue, ...props }: DropdownProps) => {
   };
 
   return (
-    <div className="flex flex-col max-w-[240px] w-full relative">
+    <div className="flex flex-col w-full relative">
       <p className="mb-[9px] BodyVariant text-color3">Payment Terms</p>
       <input type="hidden" value={dayState} {...props} />
       <button
@@ -47,9 +47,9 @@ const Dropdown = ({ day, setValue, ...props }: DropdownProps) => {
       </button>
       {dropdownActive && (
         <ul
-          className={`absolute top-20 w-full flex flex-col text-color2 gap-1 rounded-lg border-dropdown  HeadingSVariant bg-2`}
+          className={`relative top-4 w-full flex flex-col text-color2 gap-1 rounded-lg border-dropdown  HeadingSVariant bg-2`}
         >
-          <li>
+          <li className="h-12">
             <button
               className="h-12 w-full text-start px-6 hover:text-dark_purple"
               onClick={() => handleChangeDayState("1")}
@@ -58,7 +58,7 @@ const Dropdown = ({ day, setValue, ...props }: DropdownProps) => {
               Net 1 Day
             </button>
           </li>
-          <li>
+          <li className="h-12">
             <button
               className={`h-12 w-full ${style.bt} text-start px-6 hover:text-dark_purple`}
               onClick={() => handleChangeDayState("7")}
@@ -67,7 +67,7 @@ const Dropdown = ({ day, setValue, ...props }: DropdownProps) => {
               Net 7 Days
             </button>
           </li>
-          <li>
+          <li className="h-12">
             <button
               className={`h-12 w-full ${style.bt} text-start px-6 hover:text-dark_purple`}
               onClick={() => handleChangeDayState("14")}
@@ -76,7 +76,7 @@ const Dropdown = ({ day, setValue, ...props }: DropdownProps) => {
               Net 14 Days
             </button>
           </li>
-          <li>
+          <li className="h-12">
             <button
               className={`h-12 w-full ${style.bt} text-start px-6 hover:text-dark_purple`}
               onClick={() => handleChangeDayState("30")}

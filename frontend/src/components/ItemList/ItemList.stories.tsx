@@ -1,19 +1,16 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { ItemListProps } from "./ItemListProps";
 import ItemList from ".";
+import { Provider } from "react-redux";
+import store from "@/redux/store";
 
 export default {
   title: "components/ItemList",
   component: ItemList,
-  args: {
-    items: [
-      {
-        name: "Email Design",
-        price: 200.0,
-        qty: 2,
-      },
-    ],
-  },
-} as Meta<ItemListProps>;
+  decorators: [
+    (Story) => {
+      return <Provider store={store}>{Story()}</Provider>;
+    },
+  ],
+} as Meta;
 
 export const Primary: StoryObj = {};
