@@ -67,7 +67,7 @@ const DatePickerComponent: React.FC<DatePickerProps> = ({
       <div
         className={`${style.calendar} ${
           isCalendarOpen ? `${style.active}` : ""
-        } flex items-center justify-between p-4 bg-2 rounded max-w-[240px] datepicker_border hover:cursor-pointer`}
+        } flex items-center justify-between p-4 bg-2 rounded datepicker_border hover:cursor-pointer`}
         onClick={handleCalendarClick}
       >
         <p
@@ -81,7 +81,7 @@ const DatePickerComponent: React.FC<DatePickerProps> = ({
       <div
         className={`${
           style.calendar__calendar
-        } max-w-[240px] absolute top-14 mt-6 shadow flex-col items-center justify-center gap-8 rounded-lg p-6 bg-2 ${
+        } max-w-[240px] relative top-0 mt-6 shadow flex-col items-center justify-center gap-8 rounded-lg p-6 bg-2 ${
           isCalendarOpen ? `${style.calendar__calendar_open}` : ""
         }`}
       >
