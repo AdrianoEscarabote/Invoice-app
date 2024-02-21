@@ -1,0 +1,18 @@
+@media (max-width: 48rem) {
+  .container_cards {
+    overflow-y: visible !important;
+    padding: 0rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    min-height: auto !important;
+  }
+}
+
+@media (max-width: 26.25rem) {
+  .container {
+    padding: 1.75rem 1.25rem;
+  }
+}

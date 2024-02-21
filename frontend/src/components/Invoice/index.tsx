@@ -16,6 +16,7 @@ import {
 import NothingHereComponent from "../NothingHereComponent";
 import useInvoices from "@/hooks/useInvoices";
 import useWindowSize from "@/hooks/useWindowSize";
+import style from "./style.module.css";
 
 export type statusType = "Draft" | "Pending" | "Paid";
 
@@ -51,11 +52,21 @@ const Invoice = () => {
 
   const { screenSize } = useWindowSize();
 
+  useEffect(() => {
+    if (showCreateInvoice) {
+      document.body.classList.add("overflow_hidden");
+    } else {
+      document.body.classList.remove("overflow_hidden");
+    }
+  }, [showCreateInvoice]);
+
   return (
     <>
       {!showViewInvoice ? (
         <>
-          <section className="relative pt-16 px-6 flex flex-col items-center justify-start min-h-screen w-full">
+          <section
+            className={`${style.container} relative pt-16 px-6 flex flex-col items-center justify-start min-h-screen max-h-screen w-full`}
+          >
             <div className="max-w-[730px] w-full flex items-center justify-between">
               <div>
                 <h1
@@ -101,7 +112,9 @@ const Invoice = () => {
               </div>
             </div>
 
-            <div className="max-w-[730px] flex gap-4 flex-col w-full mt-16 h-ull">
+            <div
+              className={`${style.container_cards} max-w-[740px] flex gap-4 flex-col w-full mt-16 h-full overflow-y-scroll p-1 custom_scrollbar`}
+            >
               {status &&
                 filteredInvoices.map((invoice, index) => (
                   <InvoiceCard
