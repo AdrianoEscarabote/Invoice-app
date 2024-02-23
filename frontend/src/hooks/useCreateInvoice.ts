@@ -1,8 +1,10 @@
 import { InvoiceTypes } from "@/redux/invoice/InvoiceDataTypes";
 import { createInvoice } from "@/redux/invoice/reducer";
 import { ItemTypes } from "@/redux/redux-types";
+import { rootState } from "@/redux/root-reducer-types";
 import generateUniqueID from "@/utils/generateUniqueID";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 interface useCreateInvoiceProps {
@@ -24,8 +26,6 @@ interface useCreateInvoiceProps {
     street: string;
     country: string;
   };
-  items: ItemTypes[];
-  total: number;
 }
 
 const useCreateInvoice = () => {
@@ -38,6 +38,7 @@ const useCreateInvoice = () => {
   const year = today.getFullYear();
   const createdAt = `${year}-${month}-${day}`;
   const uniqueID = generateUniqueID(6);
+  const items = useSelector((rootReducer: rootState) => rootReducer.itemsSlice);
 
   const [state, setState] = useState<InvoiceTypes>();
 
@@ -45,6 +46,8 @@ const useCreateInvoice = () => {
     const data = {
       id: uniqueID,
       createdAt,
+      items,
+      total: items.reduce((accum, curr) => accum + curr.total, 0),
       ...props,
     };
     setState(data);
