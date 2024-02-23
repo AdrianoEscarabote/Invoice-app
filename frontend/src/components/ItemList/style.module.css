@@ -3,6 +3,10 @@
   grid-template-columns: 13.375rem 2.875rem 6.25rem 2.5rem 0.625rem;
 }
 
+.input_quantity {
+  padding-left: 0px !important;
+}
+
 @media (max-width: 36rem) {
   .grid {
     grid-template-columns: 1fr 2fr 2fr 1fr;

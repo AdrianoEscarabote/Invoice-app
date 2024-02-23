@@ -3,29 +3,38 @@ import InputForm from "../InputForm";
 import NewItemButton from "../NewItemButton";
 import style from "./style.module.css";
 import { useDispatch } from "react-redux";
-import { addItem, handleChangeValue, removeItem } from "@/redux/items/reducer";
+import {
+  addItem,
+  cleanItems,
+  handleChangeValue,
+  removeItem,
+  setItems,
+} from "@/redux/items/reducer";
 import { useSelector } from "react-redux";
 import { rootState } from "@/redux/root-reducer-types";
 import { useEffect } from "react";
 import useWindowSize from "@/hooks/useWindowSize";
+import { ItemListProps } from "./ItemListProps";
 
-const ItemList = () => {
+const ItemList: React.FC<ItemListProps> = ({ renderEditItems }) => {
   const { width } = useWindowSize();
   const dispatch = useDispatch();
   const items = useSelector((rootReducer: rootState) => rootReducer.itemsSlice);
+  const selectedItems = useSelector(
+    (rootReducer: rootState) => rootReducer.invoiceSlice.selectedInvoice.items
+  );
 
   useEffect(() => {
-    if (items.length === 0) {
-      dispatch(addItem({ name: "", quantity: 0, price: 0, total: 0 }));
+    dispatch(cleanItems());
+    if (renderEditItems) {
+      dispatch(setItems({ items: selectedItems }));
     }
   }, []);
 
-  useEffect(() => {
-    console.log(items);
-  }, [items]);
-
   const handleIncreaseItems = () => {
-    dispatch(addItem({ name: "", quantity: 0, price: 0, total: 0 }));
+    dispatch(
+      addItem({ name: "New Item", quantity: 0.0, price: 0.0, total: 0.0 })
+    );
   };
 
   const handleRemoveItem = (index: number) => {
@@ -70,42 +79,36 @@ const ItemList = () => {
               onChange={(e) =>
                 handleChangeInput("name", index, undefined, e.target.value)
               }
+              name="name"
               value={item.name}
             />
             <InputForm
+              name="quantity"
+              labelText={`${width > 576 ? "" : "Qty."}`}
+              alt="number"
+              className={`${style.input_quantity} HeadingSVariant text-color2 text-center`}
+              onChange={(e) => {
+                const value = Number(e.target.value.replace(/[^\d.-]/g, ""));
+                handleChangeInput("quantity", index, value, undefined);
+              }}
+              value={item.quantity}
+            />
+            <InputForm
+              name="price"
               labelText={`${width > 576 ? "" : "Price"}`}
               alt="number"
               style={{ paddingLeft: "16px" }}
               className="HeadingSVariant text-color2"
-              onChange={(e) =>
-                handleChangeInput(
-                  "price",
-                  index,
-                  Number(e.target.value),
-                  undefined
-                )
-              }
+              onChange={(e) => {
+                const value = Number(e.target.value.replace(/[^\d.-]/g, ""));
+                handleChangeInput("price", index, value, undefined);
+              }}
               value={item.price}
-            />
-            <InputForm
-              labelText={`${width > 576 ? "" : "Qty."}`}
-              style={{ paddingLeft: "20px" }}
-              alt="number"
-              className="HeadingSVariant text-color2"
-              onChange={(e) =>
-                handleChangeInput(
-                  "qty",
-                  index,
-                  Number(e.target.value),
-                  undefined
-                )
-              }
-              value={item.quantity}
             />
             <p
               className={`${
-                width > 576 ? "" : "relative pt-4"
-              } w-[56px] flex items-center text-color HeadingSVariant`}
+                width > 576 ? "w-[56px]" : "relative pt-4 w-full"
+              } flex items-center text-color HeadingSVariant overflow-hidden`}
             >
               {width > 576 ? null : (
                 <span className="absolute top-0 BodyVariant text-color3">
@@ -113,12 +116,16 @@ const ItemList = () => {
                 </span>
               )}
 
-              {item.price * item.quantity}
+              {(item.price * item.quantity).toLocaleString("en", {
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+              })}
             </p>
             <button
               onClick={() => handleRemoveItem(index)}
               className="w-11 grid place-content-center"
               type="button"
+              data-testid={`delete-button-${index}`}
             >
               <Image
                 src={"/assets/icon-delete.svg"}
