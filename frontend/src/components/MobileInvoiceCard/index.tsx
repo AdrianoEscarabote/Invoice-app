@@ -35,7 +35,13 @@ const MobileInvoiceCard = ({
               ? `Due ${format(new Date(paymentDue), "dd MMM yyyy")}`
               : null}
           </p>
-          <p className="HeadingS text-color2 flex ">£ {total}</p>
+          <p className="HeadingS text-color2 flex ">
+            £{" "}
+            {total.toLocaleString("en", {
+              maximumFractionDigits: 2,
+              minimumFractionDigits: 2,
+            })}
+          </p>
         </div>
         <div>
           <InvoiceStatus statusProp={status} />

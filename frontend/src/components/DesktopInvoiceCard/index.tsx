@@ -39,7 +39,13 @@ const DesktopInvoiceCard = ({
       </div>
 
       <div className="flex gap-5 items-center">
-        <p className="HeadingS text-color2 flex ">£ {total}</p>
+        <p className="HeadingS text-color2 flex">
+          £{" "}
+          {total.toLocaleString("en", {
+            maximumFractionDigits: 2,
+            minimumFractionDigits: 2,
+          })}
+        </p>
 
         <div className="flex items-center gap-5">
           <InvoiceStatus statusProp={status} />
