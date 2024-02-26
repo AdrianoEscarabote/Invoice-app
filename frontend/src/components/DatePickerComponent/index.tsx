@@ -57,6 +57,12 @@ const DatePickerComponent: React.FC<DatePickerProps> = ({
     setIsCalendarOpen(false);
   };
 
+  useEffect(() => {
+    if (date === "") {
+      onDatePick(calendar.getFullDate());
+    }
+  }, []);
+
   return (
     <div
       className={`flex relative flex-col ${

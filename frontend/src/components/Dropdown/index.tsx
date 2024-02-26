@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DropdownProps } from "./DropdownProps";
 import Image from "next/image";
 import style from "./style.module.css";
@@ -12,6 +12,10 @@ const Dropdown = ({ day, setValue, ...props }: DropdownProps) => {
     setDropdownActive(!dropdownActive);
     setValue("paymentTerms", param);
   };
+
+  useEffect(() => {
+    setValue("paymentTerms", "1");
+  }, []);
 
   return (
     <div className="flex flex-col w-full relative">
