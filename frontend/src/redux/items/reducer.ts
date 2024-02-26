@@ -13,8 +13,12 @@ const itemsSlice = createSlice({
   name: "itemsSlice",
   initialState,
   reducers: {
+    setItems: (state, action: PayloadAction<{ items: ItemTypes[] }>) => {
+      const { items } = action.payload;
+      if (items) state.splice(0, state.length, ...items);
+    },
     removeItem: (state, action: PayloadAction<{ index: number }>) => {
-      state.splice(action.payload.index, 1);
+      return state.filter((_, idx) => idx !== action.payload.index);
     },
     addItem: (
       state,
@@ -25,7 +29,7 @@ const itemsSlice = createSlice({
         total: 0;
       }>
     ) => {
-      state.push(action.payload);
+      return [...state, action.payload];
     },
     handleChangeValue: (
       state,
@@ -37,17 +41,27 @@ const itemsSlice = createSlice({
       }>
     ) => {
       const { field, index, valueString, valueNumber } = action.payload;
-      if (field === "name" && valueString) state[index][field] = valueString;
-
-      if (field !== "name" && valueNumber)
-        state[action.payload.index][action.payload.field] = valueNumber;
+      const newState = state.map((item, idx) => {
+        if (idx === index) {
+          return {
+            ...item,
+            [field]: valueString ?? valueNumber ?? item[field],
+            total:
+              field === "price" || field === "quantity"
+                ? item.price * item.quantity
+                : 0,
+          };
+        }
+        return item;
+      });
+      return newState;
     },
-    cleanItems: (state) => {
-      state = [{ name: "", price: 0, quantity: 0, total: 0 }];
+    cleanItems: () => {
+      return [{ name: "New Item", price: 0.0, quantity: 0.0, total: 0.0 }];
     },
   },
 });
 
 export default itemsSlice.reducer;
-export const { removeItem, addItem, cleanItems, handleChangeValue } =
+export const { setItems, removeItem, addItem, cleanItems, handleChangeValue } =
   itemsSlice.actions;
