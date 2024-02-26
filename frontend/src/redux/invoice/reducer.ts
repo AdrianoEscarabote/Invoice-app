@@ -6,6 +6,12 @@ const invoiceSlice = createSlice({
   name: "invoiceSlice",
   initialState,
   reducers: {
+    editSelectedInvoice: (state, action: PayloadAction<InvoiceTypes>) => {
+      const { ...props } = action.payload;
+      state.selectedInvoice = {
+        ...props,
+      };
+    },
     setInvoices: (state, action: PayloadAction<InvoiceTypes[]>) => {
       const newInvoices = action.payload;
       if (newInvoices.length > 0) {
@@ -18,7 +24,6 @@ const invoiceSlice = createSlice({
         if (invoice.id === state.selectedInvoice.id) {
           invoice.status = "Paid";
         }
-
         return invoice;
       });
     },
@@ -40,7 +45,6 @@ const invoiceSlice = createSlice({
       state.selectedInvoice = {
         ...properties,
       };
-      console.log(state.selectedInvoice);
     },
   },
 });
@@ -53,4 +57,5 @@ export const {
   deleteInvoice,
   createInvoice,
   selectInvoice,
+  editSelectedInvoice,
 } = invoiceSlice.actions;
