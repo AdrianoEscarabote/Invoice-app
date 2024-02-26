@@ -31,6 +31,16 @@ const itemsSlice = createSlice({
     ) => {
       return [...state, action.payload];
     },
+    calculateTotalValue: (
+      state,
+      action: PayloadAction<{
+        index: number;
+      }>
+    ) => {
+      const index = action.payload.index;
+      const item = state[index];
+      state[index].total = item.price * item.quantity;
+    },
     handleChangeValue: (
       state,
       action: PayloadAction<{
@@ -46,10 +56,6 @@ const itemsSlice = createSlice({
           return {
             ...item,
             [field]: valueString ?? valueNumber ?? item[field],
-            total:
-              field === "price" || field === "quantity"
-                ? item.price * item.quantity
-                : 0,
           };
         }
         return item;
@@ -63,5 +69,11 @@ const itemsSlice = createSlice({
 });
 
 export default itemsSlice.reducer;
-export const { setItems, removeItem, addItem, cleanItems, handleChangeValue } =
-  itemsSlice.actions;
+export const {
+  setItems,
+  removeItem,
+  addItem,
+  cleanItems,
+  handleChangeValue,
+  calculateTotalValue,
+} = itemsSlice.actions;
