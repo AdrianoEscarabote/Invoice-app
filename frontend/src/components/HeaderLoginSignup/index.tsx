@@ -4,7 +4,9 @@ import ToggleThemeBtn from "@/components/ToggleThemeBtn";
 
 const HeaderLoginSignup = () => {
   return (
-    <header className="header-color rounded-e-[20px] flex flex-col items-center justify-between gap-3 w-full absolute left-0 top-0 max-w-[103px] min-h-screen">
+    <header
+      className={`${style.header} header-color rounded-e-[20px] flex flex-col items-center justify-between gap-3 w-full absolute left-0 top-0 max-w-[103px] min-h-screen`}
+    >
       <div
         className={`${style.wrapper_img} z-10 relative bg-dark_purple w-full rounded-e-[20px] h-[103px] grid place-content-center`}
       >
@@ -16,7 +18,9 @@ const HeaderLoginSignup = () => {
           height={32}
         />
       </div>
-      <div className="px-5 py-8 border-t border-[#494E6E] w-full flex items-center justify-center">
+      <div
+        className={`${style.content} px-5 py-8 border-t border-[#494e6e] w-full flex items-center justify-center`}
+      >
         <ToggleThemeBtn />
       </div>
     </header>
