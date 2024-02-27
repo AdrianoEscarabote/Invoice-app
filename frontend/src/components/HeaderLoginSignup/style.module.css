@@ -1,0 +1,49 @@
+.wrapper_img:before {
+  content: "";
+  z-index: 2;
+  position: absolute;
+  background: #9277ff;
+  width: 6.4375rem;
+  height: 3.25rem;
+  right: 0;
+  bottom: 0;
+  border-start-start-radius: 1.25rem;
+  border-end-end-radius: 1.25rem;
+}
+
+@media (max-width: 48rem) {
+  .header {
+    min-height: 5rem !important;
+    height: 5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-direction: row;
+    border-radius: 0rem !important;
+    position: relative;
+  }
+  .wrapper_img:before {
+    width: 5rem;
+    height: 2.5rem;
+    border-end-end-radius: 1.25rem;
+  }
+  .wrapper_img {
+    width: 5rem;
+    height: 5rem;
+  }
+  .wrapper_img img {
+    width: 1.9375rem;
+    height: 1.8125rem;
+  }
+  .content {
+    width: 80px;
+    height: 80px;
+    border-top: unset;
+    border-left: 1px solid #494e6e;
+  }
+}
+
+@media (max-width: 375px) {
+  .content {
+    margin-right: 16px;
+  }
+}
