@@ -1,5 +1,5 @@
 import { InvoiceTypes } from "@/redux/invoice/InvoiceDataTypes";
-import { createInvoice, editSelectedInvoice } from "@/redux/invoice/reducer";
+import { editSelectedInvoice, setInvoices } from "@/redux/invoice/reducer";
 import { rootState } from "@/redux/root-reducer-types";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -59,8 +59,15 @@ const useEditInvoice = () => {
         body: JSON.stringify({ invoice: state }),
       });
 
-      if (response.status === 200) {
-        dispatch(createInvoice(state!));
+      const responseGetInvoices = await fetch(`${url}/invoice/get-invoices`, {
+        method: "GET",
+        credentials: "include",
+      });
+
+      if (responseGetInvoices.status === 200) {
+        const data: InvoiceTypes[] = await response.json();
+
+        dispatch(setInvoices(data));
       }
     };
 
