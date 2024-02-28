@@ -1,0 +1,12 @@
+@media (max-width: 53.875rem) {
+  .container {
+    min-height: unset;
+    margin-top: 1.25rem;
+  }
+}
+
+@media (max-width: 38.75rem) {
+  .container {
+    margin-bottom: 6.875rem;
+  }
+}
