@@ -7,10 +7,10 @@ interface Props {
   createdAt: string;
   paymentDue: string;
   description: string;
-  paymentTerms: number;
+  paymentTerms: "1" | "7" | "14" | "30";
   clientName: string;
   clientEmail: string;
-  status: string;
+  status: "Paid" | "Pending" | "Draft";
   senderAddress: {
     street: string;
     city: string;
@@ -23,7 +23,7 @@ interface Props {
     postCode: string;
     country: string;
   };
-  items: Item[];
+  items: ItemTypes[];
   total: number;
 }
 

@@ -1,10 +1,15 @@
 import { InvoiceDetailsProps } from "./InvoiceDetailsProps";
 import { format } from "date-fns/format";
+import style from "./style.module.css";
+import useWindowSize from "@/hooks/useWindowSize";
 
 const InvoiceDetails = ({ data }: InvoiceDetailsProps) => {
+  const { screenSize } = useWindowSize();
   return (
-    <section className="max-w-[730px] bg-2 p-12 rounded-lg flex flex-col">
-      <div className="w-full flex justify-between">
+    <section
+      className={`${style.container} max-w-[730px] w-full bg-2 p-12 rounded-lg flex flex-col`}
+    >
+      <div className={`${style.container_id} w-full flex justify-between`}>
         <div className="flex flex-col gap-2">
           <p className="text-color2 HeadingS flex gap-2">
             <span className="text-color3">#</span>
@@ -20,8 +25,10 @@ const InvoiceDetails = ({ data }: InvoiceDetailsProps) => {
         </p>
       </div>
 
-      <div className="flex items-start gap-[120px] mt-5">
-        <div className="flex flex-col gap-7">
+      <div
+        className={`${style.container_cols} flex-wrap flex w-full items-start gap-[120px] mt-5`}
+      >
+        <div className={`${style.col_1} flex flex-col gap-7`}>
           <p className="BodyVariant flex flex-col gap-2 text-color3">
             Invoice Date
             <span className="text-color2 HeadingS">
@@ -51,35 +58,96 @@ const InvoiceDetails = ({ data }: InvoiceDetailsProps) => {
         <div>
           <p className="flex flex-col gap-2 BodyVariant text-color3">
             Sent to
-            <span className="HeadingS text-color2">{data.clientEmail}</span>
+            <span className="HeadingS text-color2 max-w-[230px] overflow-hidden text-ellipsis whitespace-nowrap">
+              {data.clientEmail}
+            </span>
           </p>
         </div>
       </div>
 
-      <div className="flex flex-col gap-8 p-8 bg-3 rounded-t-lg mt-11">
-        <div className="BodyVariant text-color3 grid grid-cols-2">
-          <p>Item Name</p>
-          <div className="w-full flex justify-between">
-            <p>QTY.</p>
-            <p>Price</p>
-            <p>Total</p>
-          </div>
-        </div>
-        {data.items.map((item) => (
-          <div className="HeadingSVariant text-color2 grid grid-cols-2">
-            <p>{item.name}</p>
-            <div className="w-full flex justify-between items-center text-center place-content-center">
-              <p className="min-w-[26px] text-color3">{item.quantity}</p>
-              <p className="text-color3">£ {item.price}</p>
-              <p>£ {item.total}</p>
+      <div
+        className={`${style.container_items} flex flex-col gap-8 p-8 bg-3 rounded-t-lg mt-11`}
+      >
+        {screenSize === "desktop" ? (
+          <>
+            <div className="BodyVariant text-color3 grid grid-cols-2">
+              <p>Item Name</p>
+              <div className="w-full flex justify-between">
+                <p>QTY.</p>
+                <p>Price</p>
+                <p>Total</p>
+              </div>
             </div>
-          </div>
-        ))}
+            {data.items &&
+              data.items.map((item) => (
+                <>
+                  <div className="HeadingSVariant text-color2 grid grid-cols-2">
+                    <p className="text-color3 overflow-hidden text-ellipsis whitespace-nowrap max-w-[230px]">
+                      {item.name}
+                    </p>
+                    <div className="w-full flex justify-between items-center text-center place-content-center">
+                      <p className="min-w-[26px] text-color3">
+                        {item.quantity}
+                      </p>
+                      <p className="text-color3 overflow-hidden text-ellipsis whitespace-nowrap max-w-[90px]">
+                        £{" "}
+                        {item.price.toLocaleString("en", {
+                          maximumFractionDigits: 2,
+                          minimumFractionDigits: 2,
+                        })}
+                      </p>
+                      <p className="text-color3 overflow-hidden text-ellipsis whitespace-nowrap max-w-[90px]">
+                        £{" "}
+                        {item.total.toLocaleString("en", {
+                          maximumFractionDigits: 2,
+                          minimumFractionDigits: 2,
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                </>
+              ))}
+          </>
+        ) : null}
+        {screenSize === "mobile"
+          ? data.items &&
+            data.items.map((item) => (
+              <div className="HeadingSVariant flex items-center justify-between">
+                <div className="flex flex-col gap-2">
+                  <p className="HeadingS text-color2">{item.name}</p>
+                  <p className="text-color3">
+                    {item.quantity} x
+                    <span>
+                      {" "}
+                      £{" "}
+                      {item.price.toLocaleString("en", {
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2,
+                      })}
+                    </span>
+                  </p>
+                </div>
+                <p className="text-color2">
+                  £{" "}
+                  {item.total.toLocaleString("en", {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                  })}
+                </p>
+              </div>
+            ))
+          : null}
       </div>
 
       <div className="flex items-center justify-between h-20 p-8 text-white bg-4 rounded-b-lg">
         <p className="Body">Amount Due</p>
-        <p className="HeadingM">£ {data.total}</p>
+        <p className="HeadingM">
+          £{" "}
+          {data.total.toLocaleString("en", {
+            maximumFractionDigits: 2,
+            minimumFractionDigits: 2,
+          })}
+        </p>
       </div>
     </section>
   );
