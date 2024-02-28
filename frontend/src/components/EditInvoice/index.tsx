@@ -1,24 +1,71 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import CancelButton from "../CancelButton";
 import DatePickerComponent from "../DatePickerComponent";
 import Dropdown from "../Dropdown";
 import InputForm from "../InputForm";
 import SaveButton from "../SaveButton";
-import { EditInvoiceProps } from "./EditInvoiceProps";
+import { EditInvoiceProps, FormTypes } from "./EditInvoiceProps";
 import useModalFocus from "@/hooks/useModalFocus";
 import { useForm } from "react-hook-form";
+import { rootState } from "@/redux/root-reducer-types";
+import { useSelector } from "react-redux";
+import ItemList from "../ItemList";
+import useWindowSize from "@/hooks/useWindowSize";
+import Image from "next/image";
+import style from "./style.module.css";
+import { useDispatch } from "react-redux";
+import { cleanItems } from "@/redux/items/reducer";
+import useEditInvoice from "@/hooks/useEditInvoice";
 
-const EditInvoice = ({ data, closeEditInvoice }: EditInvoiceProps) => {
+const EditInvoice = ({ closeEditInvoice }: EditInvoiceProps) => {
+  const dispatch = useDispatch();
+  const { width } = useWindowSize();
+  const { handleCallApi } = useEditInvoice();
+
   const modalRef = useRef(null);
   useModalFocus(modalRef, closeEditInvoice);
+
+  const { selectedInvoice } = useSelector(
+    (rootReducer: rootState) => rootReducer.invoiceSlice
+  );
+
+  const [paymentDueData, setPaymentDueData] = useState<string>(
+    selectedInvoice.paymentDue
+  );
+
+  useEffect(() => {
+    setValue("clientAddress.city", selectedInvoice.clientAddress.city);
+    setValue("clientAddress.country", selectedInvoice.clientAddress.country);
+    setValue("clientAddress.postCode", selectedInvoice.clientAddress.postCode);
+    setValue("clientAddress.street", selectedInvoice.clientAddress.street);
+    setValue("clientEmail", selectedInvoice.clientEmail);
+    setValue("clientName", selectedInvoice.clientName);
+    setValue("createdAt", selectedInvoice.createdAt);
+    setValue("description", selectedInvoice.description);
+    setValue("paymentDue", selectedInvoice.paymentDue);
+    setValue("paymentTerms", selectedInvoice.paymentTerms);
+    setValue("senderAddress.city", selectedInvoice.senderAddress.city);
+    setValue("senderAddress.country", selectedInvoice.senderAddress.country);
+    setValue("senderAddress.postCode", selectedInvoice.senderAddress.postCode);
+    setValue("senderAddress.street", selectedInvoice.senderAddress.street);
+  }, []);
 
   const {
     formState: { errors },
     register,
     handleSubmit,
-  } = useForm<EditInvoiceProps>();
+    setValue,
+  } = useForm<FormTypes>();
 
-  const onSubmit = handleSubmit(async (data) => {});
+  const onSubmit = handleSubmit(async (data) => {
+    await handleCallApi({
+      id: selectedInvoice.id,
+      status: selectedInvoice.status,
+      ...data,
+    });
+    dispatch(cleanItems());
+    closeEditInvoice();
+  });
 
   return (
     <div className="w-full" id="modal-overlay">
@@ -26,10 +73,25 @@ const EditInvoice = ({ data, closeEditInvoice }: EditInvoiceProps) => {
         ref={modalRef}
         onClick={(e) => e.stopPropagation()}
         tabIndex={0}
-        className="max-w-[38.5625rem] absolute max-h-screen overflow-y-scroll left-0 top-0 bottom-0 bg-1 rounded-se-[20px] rounded-ee-[20px] px-14 pt-14 z-50 custom_scrollbar"
+        className={`${style.container} max-w-[38.5625rem] absolute max-h-screen overflow-y-scroll left-0 top-0 bottom-0 bg-1 rounded-se-[20px] rounded-ee-[20px] px-14 pt-14 z-50 custom_scrollbar`}
       >
+        {width < 768 ? (
+          <button
+            onClick={closeEditInvoice}
+            className="HeadingSVariant mb-4 text-color2 flex items-center gap-6 py-2 max-w-[97px] hover:text-[#888EB0]"
+          >
+            <Image
+              alt="icon arrow"
+              width={8}
+              height={4}
+              src={"/assets/icon-arrow-left.svg"}
+            />
+            Go Back
+          </button>
+        ) : null}
+
         <h2 className="HeadingM text-color2 mb-11">
-          Edit <span className="text-color3">#</span> {data.id}
+          Edit <span className="text-color3">#</span> {selectedInvoice.id}
         </h2>
 
         <form onSubmit={onSubmit}>
@@ -51,7 +113,7 @@ const EditInvoice = ({ data, closeEditInvoice }: EditInvoiceProps) => {
                 errorMessage={errors.senderAddress?.street?.message}
               />
 
-              <div className="grid grid-cols-3 gap-6">
+              <div className={`${style.container_grid} grid grid-cols-3 gap-6`}>
                 <InputForm
                   labelText="City"
                   className="w-full"
@@ -126,7 +188,7 @@ const EditInvoice = ({ data, closeEditInvoice }: EditInvoiceProps) => {
                 errorMessage={errors.clientAddress?.street?.message}
               />
 
-              <div className="grid grid-cols-3 gap-6">
+              <div className={`${style.container_grid} grid grid-cols-3 gap-6`}>
                 <InputForm
                   labelText="City"
                   className="w-full"
@@ -160,18 +222,23 @@ const EditInvoice = ({ data, closeEditInvoice }: EditInvoiceProps) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div
+              className={`${style.container_datepicker} grid grid-cols-2 gap-6 mt-7`}
+            >
               <DatePickerComponent
-                disabled={false}
+                disabled={true}
                 label="Invoice Date"
                 isOpen={false}
-                date=""
-                onDatePick={() => {}}
+                date={paymentDueData}
+                onDatePick={setPaymentDueData}
               />
-              <Dropdown day="1" />
+              <Dropdown
+                day={selectedInvoice.paymentTerms}
+                setValue={() => {}}
+              />
             </div>
 
-            <div>
+            <div className="mt-8">
               <InputForm
                 labelText="Project Description"
                 className="w-full"
@@ -184,19 +251,25 @@ const EditInvoice = ({ data, closeEditInvoice }: EditInvoiceProps) => {
               />
             </div>
 
+            <div>
+              <ItemList renderEditItems={true} />
+            </div>
+
             <div className="w-full flex gap-2 mt-10 justify-end">
-              <CancelButton />
-              <SaveButton />
+              <CancelButton CancelFn={closeEditInvoice} />
+              <SaveButton onClick={onSubmit} />
             </div>
           </fieldset>
         </form>
       </section>
-      <div
-        id="modal-overlay"
-        tabIndex={-1}
-        className="absolute top-0 right-0 h-screen w-[100%] flex items-center justify-center bg-[#1d1d1d93]"
-        onClick={closeEditInvoice}
-      ></div>
+      {width > 768 ? (
+        <div
+          id="modal-overlay"
+          tabIndex={-1}
+          className="absolute top-0 right-0 h-screen w-[100%] flex items-center justify-center bg-[#1d1d1d93]"
+          onClick={closeEditInvoice}
+        ></div>
+      ) : null}
     </div>
   );
 };

@@ -1,17 +1,14 @@
 export interface EditInvoiceProps {
-  data: Props;
   closeEditInvoice: () => void;
 }
 
-interface EditInvoiceProps {
-  id: string;
+export interface FormTypes {
   createdAt: string;
   paymentDue: string;
   description: string;
-  paymentTerms: number;
+  paymentTerms: "1" | "7" | "14" | "30";
   clientName: string;
   clientEmail: string;
-  status: string;
   senderAddress: {
     street: string;
     city: string;
@@ -24,13 +21,4 @@ interface EditInvoiceProps {
     postCode: string;
     country: string;
   };
-  items: Item[];
-  total: number;
-}
-
-interface Item {
-  name: string;
-  quantity: number;
-  price: number;
-  total: number;
 }
