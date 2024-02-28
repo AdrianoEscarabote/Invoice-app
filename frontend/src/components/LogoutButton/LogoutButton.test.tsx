@@ -1,6 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import LogoutButton from ".";
 
+// Mock useRouter:
+jest.mock("next/navigation", () => ({
+  useRouter() {
+    return {
+      prefetch: () => null,
+    };
+  },
+}));
+
 describe("LogoutButton", () => {
   it("should render correctly", () => {
     render(<LogoutButton />);
