@@ -1,6 +1,6 @@
-import { rootState } from "@/redux/root-reducer-types";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { rootState } from "@/redux/root-reducer-types";
 
 const useDeleteInvoice = () => {
   const { id } = useSelector(
@@ -20,13 +20,20 @@ const useDeleteInvoice = () => {
         invoiceId: id,
       }),
     });
+    if (!response.ok) {
+      console.error("Failed to delete invoice");
+    }
   };
 
   useEffect(() => {
-    if (callDeleteApi) handleDeleteInvoice();
+    if (callDeleteApi) {
+      handleDeleteInvoice();
+      setCallDeleteApi(false);
+    }
   }, [callDeleteApi]);
 
   return {
+    handleDeleteInvoice,
     setCallDeleteApi,
   };
 };
