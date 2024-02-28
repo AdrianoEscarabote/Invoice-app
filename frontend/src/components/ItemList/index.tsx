@@ -5,6 +5,7 @@ import style from "./style.module.css";
 import { useDispatch } from "react-redux";
 import {
   addItem,
+  calculateTotalValue,
   cleanItems,
   handleChangeValue,
   removeItem,
@@ -55,6 +56,7 @@ const ItemList: React.FC<ItemListProps> = ({ renderEditItems }) => {
         valueString,
       })
     );
+    dispatch(calculateTotalValue({ index }));
   };
 
   return (
@@ -116,7 +118,7 @@ const ItemList: React.FC<ItemListProps> = ({ renderEditItems }) => {
                 </span>
               )}
 
-              {(item.price * item.quantity).toLocaleString("en", {
+              {item.total.toLocaleString("en", {
                 maximumFractionDigits: 2,
                 minimumFractionDigits: 2,
               })}
