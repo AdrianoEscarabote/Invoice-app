@@ -8,7 +8,7 @@ describe("SaveButton", () => {
 
   it("should call the function passed as prop correctly", () => {
     const mockFn = jest.fn();
-    render(<SaveButton SaveFn={mockFn} />);
+    render(<SaveButton onClick={mockFn} />);
 
     const button = screen.getByText("Save Changes");
 
