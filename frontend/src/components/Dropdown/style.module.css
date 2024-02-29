@@ -1,0 +1,9 @@
+.button:hover {
+  border: 0.0625rem solid #7c5dfa !important;
+}
+.active {
+  border: 0.0625rem solid #7c5dfa !important;
+}
+.bt {
+  border-top: 0.0625rem solid #dfe3fa !important;
+}

@@ -1,0 +1,28 @@
+@media (max-width: 53.875rem) {
+  .container_cols {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  .container {
+    padding: 1rem !important;
+  }
+  .container_id {
+    flex-direction: column !important;
+    align-items: start;
+    gap: 1rem;
+  }
+  .container_id p {
+    text-align: start;
+  }
+  .container_cols {
+    gap: 2rem !important;
+  }
+  .col_1 {
+    padding-right: 1.25rem;
+  }
+  .container_items {
+    gap: 1rem;
+  }
+}

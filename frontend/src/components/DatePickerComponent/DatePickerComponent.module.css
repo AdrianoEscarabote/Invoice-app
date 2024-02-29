@@ -1,0 +1,42 @@
+.calendar__icon {
+  background: url("/assets/icon-calendar.svg") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.calendar__calendar {
+  display: none;
+}
+.active {
+  border: 0.0625rem solid #7c5dfa !important;
+}
+.calendar__calendar_open {
+  border: 0.0625rem solid #7c5dfa !important;
+  display: flex;
+}
+.calendar__month_change {
+  width: 9px;
+  height: 9px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.calendar__month_change_type_backward {
+  background-image: url("/assets/icon-arrow-left.svg");
+}
+.calendar__month_change_type_forward {
+  background-image: url("/assets/icon-arrow-right.svg");
+}
+.calendar__days_list {
+  gap: 15px;
+  list-style: none;
+}
+.calendar__day {
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  margin: 0;
+  align-self: flex-start;
+}
+.calendar__day_current {
+  color: #9277ff;
+}

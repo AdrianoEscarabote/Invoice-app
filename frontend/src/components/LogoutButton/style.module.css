@@ -1,0 +1,30 @@
+.logout_option {
+  position: absolute;
+}
+
+.arrow {
+  border: 0.0625rem solid #9277ff;
+  border-right: unset;
+  border-top: unset;
+  position: absolute;
+  left: -0.5625rem;
+  width: 1rem;
+  height: 1rem;
+  transform: rotate(45deg);
+}
+
+@media (max-width: 48rem) {
+  .arrow {
+    border: 1px solid #9277ff;
+    border-right: unset;
+    border-bottom: unset;
+    left: 4rem;
+    bottom: 3.5625rem;
+  }
+}
+
+@media (max-width: 23.4375rem) {
+  .logout_option {
+    right: 0.625rem;
+  }
+}

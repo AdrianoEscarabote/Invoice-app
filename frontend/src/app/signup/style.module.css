@@ -1,0 +1,8 @@
+@media (max-width: 32.5rem) {
+  .container {
+    padding: 2rem 1.25rem;
+  }
+  .main {
+    min-height: 90vh !important;
+  }
+}

@@ -1,0 +1,14 @@
+.card {
+  padding: 1rem 2rem;
+}
+
+.card:hover {
+  outline: 0.0625rem solid #7c5dfa;
+  transition: 0s;
+}
+
+@media (max-width: 45rem) {
+  .card {
+    padding: 1rem 2rem;
+  }
+}

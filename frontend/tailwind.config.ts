@@ -25,6 +25,7 @@ const config: Config = {
         lightBg: "#F8F8FB",
         darkBg: "#141625",
         gray: "#7E88C3",
+        text_gray: "#888EB0",
       },
     },
   },
