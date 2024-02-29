@@ -1,6 +1,9 @@
 @media (max-width: 48rem) {
   .button {
     min-width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .button img {
     width: 1.2492rem;
