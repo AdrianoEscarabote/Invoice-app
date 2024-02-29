@@ -13,7 +13,7 @@ const NothingHereComponent = () => {
         }}
       />
       <div className="flex items-center gap-6 flex-col">
-        <h2 className="HeadingM text-almost_black ">There is nothing here</h2>
+        <h2 className="HeadingM text-color2">There is nothing here</h2>
         <p className="w-full max-w-[219px] Body flex flex-col text-center text-text_gray">
           <span>Create an invoice by clicking the</span>
           <span>
