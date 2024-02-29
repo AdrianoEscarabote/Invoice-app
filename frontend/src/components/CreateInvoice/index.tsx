@@ -8,7 +8,7 @@ import { CreateInvoiceData, CreateInvoiceProps } from "./CreateInvoiceProps";
 import { rootState } from "@/redux/root-reducer-types";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import useModalFocus from "@/hooks/useModalFocus";
 import ItemList from "../ItemList";
 import { cleanItems } from "@/redux/items/reducer";
@@ -54,8 +54,6 @@ const CreateInvoice = ({ closeCreateInvoice }: CreateInvoiceProps) => {
         street: getValues("clientAddress.street"),
         country: getValues("clientAddress.country"),
       },
-      items: items,
-      total: 0,
     };
     await handleCallApi({
       status: "Draft",
@@ -271,7 +269,7 @@ const CreateInvoice = ({ closeCreateInvoice }: CreateInvoiceProps) => {
             </div>
 
             <div>
-              <ItemList />
+              <ItemList renderEditItems={false} />
             </div>
 
             {width > 768 ? (
