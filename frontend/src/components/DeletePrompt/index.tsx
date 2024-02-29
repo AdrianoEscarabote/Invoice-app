@@ -1,39 +1,30 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import DeleteButton from "../DeleteButton";
 import { DeletePromptProps } from "./DeletePrompt";
 import CancelButton from "../CancelButton";
 import useModalFocus from "@/hooks/useModalFocus";
+import useDeleteInvoice from "@/hooks/useDeleteInvoice";
+import { useDispatch } from "react-redux";
+import { deleteInvoice } from "@/redux/invoice/reducer";
+import { useSelector } from "react-redux";
+import { rootState } from "@/redux/root-reducer-types";
 
-const DeletePrompt = ({
-  invoice,
-  closePrompt,
-  DeleteFn,
-}: DeletePromptProps) => {
+const DeletePrompt = ({ closePrompt, DeleteFn }: DeletePromptProps) => {
+  const dispatch = useDispatch();
   const modalRef = useRef(null);
-  const [deleteClicked, setDeleteClicked] = useState<boolean>(false);
+  const selectedInvoice = useSelector(
+    (rootReducer: rootState) => rootReducer.invoiceSlice.selectedInvoice
+  );
+  const { handleDeleteInvoice } = useDeleteInvoice();
+
   useModalFocus(modalRef, closePrompt);
 
-  useEffect(() => {
-    const deleteInvoice = async () => {
-      if (deleteClicked) {
-        try {
-          await fetch(`${process.env.NEXT_PUBLIC_API_URL}/invoice/${invoice}`, {
-            method: "DELETE",
-            credentials: "include",
-          });
-        } catch (error) {
-          console.error("Error ", error);
-        }
-      }
-    };
-
-    deleteInvoice();
-  }, [deleteClicked]);
-
-  const handleDeleteInvoice = () => {
-    setDeleteClicked(true);
+  const handleDeleteInvoiceClick = () => {
+    handleDeleteInvoice();
+    dispatch(deleteInvoice());
+    alert("Invoice deleted");
 
     if (DeleteFn) {
       DeleteFn();
@@ -56,13 +47,13 @@ const DeletePrompt = ({
       >
         <h2 className="HeadingM mb-3 text-color2">Confirm Deletion</h2>
         <p className="Body draft-btn" style={{ background: "unset" }}>
-          Are you sure you want to delete invoice #{invoice}? This action cannot
-          be undone.
+          Are you sure you want to delete invoice #{selectedInvoice.id}? This
+          action cannot be undone.
         </p>
 
         <div className="flex gap-2 w-full justify-end mt-3">
           <CancelButton CancelFn={closePrompt} id="first_element" />
-          <DeleteButton onClick={handleDeleteInvoice} />
+          <DeleteButton onClick={handleDeleteInvoiceClick} />
         </div>
       </div>
     </div>
