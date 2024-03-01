@@ -248,7 +248,7 @@ const CreateInvoice = ({ closeCreateInvoice }: CreateInvoiceProps) => {
                 onDatePick={setPaymentDueData}
               />
               <Dropdown
-                day={"1"}
+                day={1}
                 setValue={setValue}
                 {...register("paymentTerms")}
               />
