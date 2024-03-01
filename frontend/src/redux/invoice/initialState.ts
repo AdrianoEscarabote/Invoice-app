@@ -12,7 +12,7 @@ export const initialState: initialStateType = {
     createdAt: "",
     paymentDue: "",
     description: "",
-    paymentTerms: "1",
+    paymentTerms: 1,
     clientName: "",
     clientEmail: "",
     status: "Draft",
