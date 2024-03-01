@@ -6,7 +6,7 @@ export interface FormTypes {
   createdAt: string;
   paymentDue: string;
   description: string;
-  paymentTerms: "1" | "7" | "14" | "30";
+  paymentTerms: 1 | 7 | 14 | 30;
   clientName: string;
   clientEmail: string;
   senderAddress: {
