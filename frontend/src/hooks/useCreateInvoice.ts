@@ -11,7 +11,7 @@ interface useCreateInvoiceProps {
   clientName: string;
   clientEmail: string;
   description: string;
-  paymentTerms: "1" | "7" | "14" | "30";
+  paymentTerms: 1 | 7 | 14 | 30;
   status: "Pending" | "Paid" | "Draft";
   paymentDue: string;
   senderAddress: {
