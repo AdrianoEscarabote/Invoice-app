@@ -7,7 +7,7 @@ const Dropdown = ({ day, setValue, ...props }: DropdownProps) => {
   const [dropdownActive, setDropdownActive] = useState<boolean>(false);
   const [dayState, setDayState] = useState(day);
 
-  const handleChangeDayState = (param: "1" | "7" | "14" | "30") => {
+  const handleChangeDayState = (param: 1 | 7 | 14 | 30) => {
     setDayState(param);
     setDropdownActive(!dropdownActive);
     setValue("paymentTerms", param);
@@ -29,7 +29,7 @@ const Dropdown = ({ day, setValue, ...props }: DropdownProps) => {
         onClick={() => setDropdownActive(!dropdownActive)}
         type="button"
       >
-        Net {dayState} {dayState === "1" ? " Day" : "Days"}
+        Net {dayState} {dayState === 1 ? " Day" : " Days"}
         {dropdownActive ? (
           <Image
             alt="icon arrow down"
@@ -56,7 +56,7 @@ const Dropdown = ({ day, setValue, ...props }: DropdownProps) => {
           <li className="h-12">
             <button
               className="h-12 w-full text-start px-6 hover:text-dark_purple"
-              onClick={() => handleChangeDayState("1")}
+              onClick={() => handleChangeDayState(1)}
               type="button"
             >
               Net 1 Day
@@ -65,7 +65,7 @@ const Dropdown = ({ day, setValue, ...props }: DropdownProps) => {
           <li className="h-12">
             <button
               className={`h-12 w-full ${style.bt} text-start px-6 hover:text-dark_purple`}
-              onClick={() => handleChangeDayState("7")}
+              onClick={() => handleChangeDayState(7)}
               type="button"
             >
               Net 7 Days
@@ -74,7 +74,7 @@ const Dropdown = ({ day, setValue, ...props }: DropdownProps) => {
           <li className="h-12">
             <button
               className={`h-12 w-full ${style.bt} text-start px-6 hover:text-dark_purple`}
-              onClick={() => handleChangeDayState("14")}
+              onClick={() => handleChangeDayState(14)}
               type="button"
             >
               Net 14 Days
@@ -83,7 +83,7 @@ const Dropdown = ({ day, setValue, ...props }: DropdownProps) => {
           <li className="h-12">
             <button
               className={`h-12 w-full ${style.bt} text-start px-6 hover:text-dark_purple`}
-              onClick={() => handleChangeDayState("30")}
+              onClick={() => handleChangeDayState(30)}
               type="button"
             >
               Net 30 Days
