@@ -21,7 +21,7 @@ interface CreateInvoiceData {
   };
   description: string;
   createdAt: string;
-  paymentTerms: "1" | "7" | "14" | "30";
+  paymentTerms: 1 | 7 | 14 | 30;
   items: ItemTypes[];
   total: number;
 }
