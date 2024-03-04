@@ -6,7 +6,7 @@ export default {
   title: "components/Dropdown",
   component: Dropdown,
   args: {
-    day: "14",
+    day: 14,
     setValue: () => {},
   },
 } as Meta<DropdownProps>;
