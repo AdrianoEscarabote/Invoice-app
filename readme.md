@@ -65,6 +65,12 @@ This was my third full-stack project, and I felt an incredible ease in getting t
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
 
+## Backend Architecture
+
+<div align="center">
+  <img src="https://github.com/AdrianoEscarabote/Invoice-app/assets/101136987/be6d56e6-0ea6-46fc-a59c-5acfcf8d8ad6" />
+</div>
+
 ## Used Concepts
 
 - SOLID
