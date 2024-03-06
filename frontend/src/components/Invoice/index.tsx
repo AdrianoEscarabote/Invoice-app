@@ -17,10 +17,12 @@ import NothingHereComponent from "../NothingHereComponent";
 import useInvoices from "@/hooks/useInvoices";
 import useWindowSize from "@/hooks/useWindowSize";
 import style from "./style.module.css";
+import useUserAuthenticated from "@/hooks/useUserAuthenticated";
 
 export type statusType = "Draft" | "Pending" | "Paid";
 
 const Invoice = () => {
+  useUserAuthenticated("/login")
   useInvoices();
   const dispatch = useDispatch();
   const { invoices } = useSelector(
