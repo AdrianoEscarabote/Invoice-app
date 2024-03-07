@@ -15,7 +15,7 @@ const useUserAuthenticated = (route) => {
 
       if (response.status === 200) {
         setError(false);
-        router.push(`/`);
+        return;
       }
       setError(true);
       router.push(`/${route}`);
