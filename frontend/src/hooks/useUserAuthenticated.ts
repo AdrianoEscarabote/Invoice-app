@@ -18,7 +18,8 @@ const useUserAuthenticated = (route) => {
         return;
       }
       setError(true);
-      router.push(`/${route}`);
+      if (route === "login") router.push("/login");
+      if (route === "signup") router.push("/signup");
     };
     callApi();
   }, []);
