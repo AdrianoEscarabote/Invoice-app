@@ -16,10 +16,10 @@ const useUserAuthenticated = (route) => {
       if (response.status === 200) {
         setError(false);
         return;
+      } else {
+        setError(true);
+        route === "signup" ? router.push("/signup") : router.push("/login");
       }
-      setError(true);
-      if (route === "login") router.push("/login");
-      if (route === "signup") router.push("/signup");
     };
     callApi();
   }, []);
