@@ -8,9 +8,14 @@ const invoiceSlice = createSlice({
   reducers: {
     editSelectedInvoice: (state, action: PayloadAction<InvoiceTypes>) => {
       const { ...props } = action.payload;
-      state.selectedInvoice = {
-        ...props,
-      };
+      const selectedInvoice = { ...props };
+      state.selectedInvoice = selectedInvoice;
+      state.invoices = state.invoices.map((invoice, index) => {
+        if (invoice.id === selectedInvoice.id) {
+          return (state.invoices[index] = selectedInvoice);
+        }
+        return invoice;
+      });
     },
     setInvoices: (state, action: PayloadAction<InvoiceTypes[]>) => {
       const newInvoices = action.payload;
