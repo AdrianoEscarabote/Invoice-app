@@ -24,7 +24,6 @@ const DeletePrompt = ({ closePrompt, DeleteFn }: DeletePromptProps) => {
   const handleDeleteInvoiceClick = () => {
     handleDeleteInvoice();
     dispatch(deleteInvoice());
-    alert("Invoice deleted");
 
     if (DeleteFn) {
       DeleteFn();
