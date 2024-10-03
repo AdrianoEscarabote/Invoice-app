@@ -1,5 +1,6 @@
 // env
 import { config } from "dotenv"
+const port = process.env.PORT || 7000
 
 // database
 import { MongoClient } from "./database/mongo"
@@ -48,8 +49,6 @@ const main = async () => {
 
   app.use("/auth", authRouter)
   app.use("/invoice", InvoiceRouter)
-
-  const port = 5000
 
   app.listen(port, () => {
     console.log(`listening on port http://localhost:${port}`)
