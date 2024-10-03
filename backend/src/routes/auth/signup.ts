@@ -16,8 +16,6 @@ SignupRoute.post("/", async (req, res) => {
     res,
   )
 
-  console.log("cheguei até aqui??", statusCode, body)
-
   res.status(statusCode).send(body)
 })
 
