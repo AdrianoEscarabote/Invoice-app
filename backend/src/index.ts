@@ -17,7 +17,7 @@ import cors from "cors"
 // configures the cors to allow only one origin
 const corsOptions = {
   credentials: true,
-  origin: "https://invoice-app-adrianoescarabote.vercel.app",
+  origin: "https://invoice-app-adrianoescarabotes-projects.vercel.app",
 }
 
 // routers
@@ -35,7 +35,7 @@ const main = async () => {
   app.use(function (req: Request, res: Response, next: NextFunction) {
     res.header(
       "Access-Control-Allow-Origin",
-      "https://invoice-app-adrianoescarabote.vercel.app",
+      "https://invoice-app-adrianoescarabotes-projects.vercel.app",
     )
     res.header("Access-Control-Allow-Credentials", "true")
     next()
